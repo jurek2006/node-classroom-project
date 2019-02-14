@@ -26,3 +26,11 @@ express, eslint, nodemon
 ## 1. Utworzenie projektu, dodanie repozytorium na github, bardzo podstawowa route.
 
 Dodałem jeszcze nodemon, express.
+
+## 2. Zapisywanie danych kontaktów dodanych z formularza do pliku json.
+
+Chcemy mieć możliwość zapisywania danych kontaktów do pliku JSON w folderze data.
+
+### Dodanie ejs jako templating engine i ustawienie podstawowego widoku (i route) 
+
+Dodaję ejs jako templating engine. Tworzę route /routes/contact.js 
