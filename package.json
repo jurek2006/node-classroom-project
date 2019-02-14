@@ -1,0 +1,27 @@
+{
+    "name": "classroom-project",
+    "version": "1.0.0",
+    "description": "Project made to solidify knowledge in basic Node (after some part of Node course) ",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jurek2006/node-classroom-project.git"
+    },
+    "author": "Jurek Skowron",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jurek2006/node-classroom-project/issues"
+    },
+    "homepage": "https://github.com/jurek2006/node-classroom-project#readme",
+    "dependencies": {
+        "eslint": "^5.13.0",
+        "express": "^4.16.4"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.10"
+    }
+}
