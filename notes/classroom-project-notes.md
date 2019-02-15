@@ -33,4 +33,4 @@ Chcemy mieć możliwość zapisywania danych kontaktów do pliku JSON w folderze
 
 ### Dodanie ejs jako templating engine i ustawienie podstawowego widoku (i route) 
 
-Dodaję ejs jako templating engine. Tworzę route /routes/contact.js 
+Dodaję ejs jako templating engine. Tworzę router w pliku definiującym routes (na razie wszystkie) /routes/routes.js Utworzenie routes /, /contact/list i /contact/add
