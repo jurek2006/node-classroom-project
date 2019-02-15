@@ -1,14 +1,11 @@
 const express = require('express');
+const userController = require('../controllers/user');
 
 const router = express.Router();
 
-router.get('/contact/list', (req, res, next) => {
-    res.render('index', { page: 'list' });
-});
+router.get('/contact/list', userController.getUsers);
 
-router.get('/contact/add', (req, res, next) => {
-    res.render('index', { page: 'add contact' });
-});
+router.get('/contact/add', userController.getAddUser);
 
 router.get('/', (req, res, next) => {
     res.render('index', { page: '\\' });
