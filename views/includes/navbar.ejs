@@ -1,1 +1,19 @@
-<p>Navbar</p>
+<ul>
+    <li>
+        <a href="/" class="<%= locals.path === '/' ? 'active' : '' %>">Index</a>
+    </li>
+    <li>
+        <a
+            href="/contact/list"
+            class="<%= locals.path === '/contact/list' ? 'active' : '' %>"
+            >Contacts list</a
+        >
+    </li>
+    <li>
+        <a
+            href="/contact/add"
+            class="<%= locals.path === '/contact/add' ? 'active' : '' %>"
+            >Add contact</a
+        >
+    </li>
+</ul>

@@ -1,4 +1,5 @@
 exports.getContacts = (req, res, next) => {
+    console.log(req.originalUrl);
     res.render('contact/contact-list', { title: 'Contacts list' });
 };
 

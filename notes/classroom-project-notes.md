@@ -47,5 +47,11 @@ Dodanie kontrolera user a w nim metod obsługi dla routes /contact/list i /conta
 
 ### Refaktor nazw z user do contact
 
+### Wypełnienie nawigacji
+
+Przekazanie path do widoku ejs za pomocą app.locals. 
+
+Dodanie bardzo podstawowego stylu w public/css (serwowanego statycznie przez express)
+
 
 
