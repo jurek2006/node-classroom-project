@@ -45,5 +45,7 @@ Dodanie kontrolera user a w nim metod obsługi dla routes /contact/list i /conta
 
 ### Dodanie includes początku i końca dokumentu html oraz nawigacji do widoków
 
+### Refaktor nazw z user do contact
+
 
 

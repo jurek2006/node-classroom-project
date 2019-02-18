@@ -1,11 +1,11 @@
 const express = require('express');
-const userController = require('../controllers/user');
+const contactController = require('../controllers/contact');
 
 const router = express.Router();
 
-router.get('/contact/list', userController.getUsers);
+router.get('/contact/list', contactController.getContacts);
 
-router.get('/contact/add', userController.getAddUser);
+router.get('/contact/add', contactController.getAddContacts);
 
 router.get('/', (req, res, next) => {
     res.render('index', { title: 'Index' });
