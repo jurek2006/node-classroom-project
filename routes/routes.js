@@ -8,7 +8,7 @@ router.get('/contact/list', userController.getUsers);
 router.get('/contact/add', userController.getAddUser);
 
 router.get('/', (req, res, next) => {
-    res.render('index', { page: '\\' });
+    res.render('index', { title: 'Index' });
 });
 
 module.exports = router;

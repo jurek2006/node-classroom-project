@@ -39,9 +39,11 @@ Dodaję ejs jako templating engine. Tworzę router w pliku definiującym routes 
 
 Dodanie middleware, kontrolera i widoku dla page not found 404.
 
-### Dodanie kontrolera user
+### Dodanie kontrolera user i widoków 
 
 Dodanie kontrolera user a w nim metod obsługi dla routes /contact/list i /contact/add i widoków dla nich
+
+### Dodanie includes początku i końca dokumentu html oraz nawigacji do widoków
 
 
 
