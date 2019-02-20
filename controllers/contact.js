@@ -1,6 +1,10 @@
+const Contact = require('../models/contact');
+
 exports.getContacts = (req, res, next) => {
-    console.log(req.originalUrl);
-    res.render('contact/contact-list', { title: 'Contacts list' });
+    Contact.getContacts().then(contacts => {
+        console.log(contacts);
+        res.render('contact/contact-list', { title: 'Contacts list' });
+    });
 };
 
 exports.getAddContacts = (req, res, next) => {

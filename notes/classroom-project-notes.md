@@ -53,5 +53,10 @@ Przekazanie path do widoku ejs za pomocą app.locals.
 
 Dodanie bardzo podstawowego stylu w public/css (serwowanego statycznie przez express)
 
+### Dodanie modelu Contact i pobieranie listy kontaktów z pliku json
 
+Funkcja odczytywania kontaktów getContacts w modelu Contact.
 
+Funkcje odczytu/parsowania pliku JSON w utils/fileUtils
+
+Dodanie folderu data na dane a w nim contacts.json zapisującego listę kontaktów.
