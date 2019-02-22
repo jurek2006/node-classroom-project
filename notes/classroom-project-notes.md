@@ -77,12 +77,6 @@ Sprawdzanie czy jest tablicą https://developer.mozilla.org/pl/docs/Web/JavaScri
 
 Sprawdzanie czy tablica zawiera odpowiednie obiekty: https://medium.com/@andrei.pfeiffer/jest-matching-objects-in-array-50fe2f4d6b98
 
-
-
-
-
-#### 
-
 ### Refaktoryzacja readJsonFile na użycie then
 
 (poprawić readJsonFile na użycie then)
