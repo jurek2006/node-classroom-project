@@ -1,20 +1,12 @@
 const path = require('path');
 const fs = require('fs');
 
-const getFileAbsolutePath = (filename, pathRelativeToRoot = '') => {
-    return path.join(
-        path.dirname(process.mainModule.filename),
-        pathRelativeToRoot,
-        filename
-    );
-};
-
 exports.readJsonFile = (filename, pathRelativeToRoot) => {
     // reads and parses JSON file
-    const p = getFileAbsolutePath(filename, pathRelativeToRoot);
+    const fileAbsolutePath = path.resolve(pathRelativeToRoot, filename);
 
     return new Promise((resolve, reject) => {
-        fs.readFile(p, (err, data) => {
+        fs.readFile(fileAbsolutePath, (err, data) => {
             if (err) reject(err);
             try {
                 resolve(JSON.parse(data));
