@@ -60,3 +60,32 @@ Funkcja odczytywania kontaktów getContacts w modelu Contact.
 Funkcje odczytu/parsowania pliku JSON w utils/fileUtils
 
 Dodanie folderu data na dane a w nim contacts.json zapisującego listę kontaktów.
+
+### Dodanie testów dla readJsonFile
+
+Dodanie mocha i mjackson/expect do testów
+
+#### Problem ścieżek zapisu w testach
+
+przy testowaniu funkcji odczytu z plików , która używa path.dirname(process.mainModule.filename), ścieżka nie jest względem folderu głównego ale względem folderu mocha - np. path.dirname(process.mainModule.filename).
+
+**Problem rozwiązałem (trochę nieoczekiwanie dla mnie) za pomocą refaktoryzacji kodu generowania ścieżki w samej funkcji zapisu (a nie jak myślałem początkowo, szukając obejścia) za pomocą path.resolve() i wtedy w testach zupełnie nic nie trzeba zmieniać.**
+
+#### Jak sprawdzić, czy została wczytana tablica odpowiednich obiektów:
+
+Sprawdzanie czy jest tablicą https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Obiekty/Array/isArray
+
+Sprawdzanie czy tablica zawiera odpowiednie obiekty: https://medium.com/@andrei.pfeiffer/jest-matching-objects-in-array-50fe2f4d6b98
+
+
+
+
+
+#### 
+
+### Refaktoryzacja readJsonFile na użycie then
+
+(poprawić readJsonFile na użycie then)
+
+### Wyświetlanie listy kontaktów w widoku contact-list
+
