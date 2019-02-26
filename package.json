@@ -5,8 +5,8 @@
     "main": "app.js",
     "scripts": {
         "test": "mocha **/*.test.js --exit",
-        "test-watch": "nodemon --exec \"npm test\"",
-        "start": "nodemon app.js"
+        "test-watch": "nodemon -e js --exec \"npm test\"",
+        "start": "nodemon -e js app.js"
     },
     "repository": {
         "type": "git",

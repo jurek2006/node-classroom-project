@@ -77,6 +77,16 @@ Sprawdzanie czy jest tablicą https://developer.mozilla.org/pl/docs/Web/JavaScri
 
 Sprawdzanie czy tablica zawiera odpowiednie obiekty: https://medium.com/@andrei.pfeiffer/jest-matching-objects-in-array-50fe2f4d6b98
 
+Dodanie custom matchera - ale tylko w pliku fileSystemUtils.test.js
+
+https://jestjs.io/docs/en/asynchronous
+
+Testy zostawiam na bardzo podstawowym poziomie:
+
+- czy udaje się wczytać poprawną tablicę kontaktów z poprawnego pliku
+- czy jest reject dla pliku, który nie istnieje
+- czy jest reject dla pliku, który nie jest poprawnym json
+
 ### Refaktoryzacja readJsonFile na użycie then
 
 (poprawić readJsonFile na użycie then)
