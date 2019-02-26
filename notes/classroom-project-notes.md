@@ -87,9 +87,7 @@ Testy zostawiam na bardzo podstawowym poziomie:
 - czy jest reject dla pliku, który nie istnieje
 - czy jest reject dla pliku, który nie jest poprawnym json
 
-### Refaktoryzacja readJsonFile na użycie then
-
-(poprawić readJsonFile na użycie then)
-
 ### Wyświetlanie listy kontaktów w widoku contact-list
+
+Proste wyświetlenie listy kontaktów w paragrafach
 

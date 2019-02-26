@@ -4,6 +4,12 @@
 
 <body>
     <%- include('../includes/navbar.ejs') %>
-    <h1>Users list</h1>
+    <h1>Contact list</h1>
+
+    <ul>
+        <% for(let contact of contacts) { %>
+            <li><%= contact.id %>. <%= contact.firstName %> <%= contact.lastName %></li>
+        <% } %>
+    </ul>
 
     <%- include('../includes/html-end.ejs') %>
