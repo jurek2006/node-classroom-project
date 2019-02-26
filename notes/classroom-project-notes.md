@@ -91,3 +91,7 @@ Testy zostawiam na bardzo podstawowym poziomie:
 
 Proste wyświetlenie listy kontaktów w paragrafach
 
+### Testowanie metody statycznej getContacts
+
+W modelu contact. Jeśli był błąd odczytu pliku powinna zwracać pustą tablicę. Jeśli udało się odczytać poprawnie to tablicę kontaktów z pliku.
+
