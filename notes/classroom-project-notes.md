@@ -93,5 +93,8 @@ Proste wyświetlenie listy kontaktów w paragrafach
 
 ### Testowanie metody statycznej getContacts
 
-W modelu contact. Jeśli był błąd odczytu pliku powinna zwracać pustą tablicę. Jeśli udało się odczytać poprawnie to tablicę kontaktów z pliku.
+W modelu contact. Jeśli był błąd odczytu pliku powinna zwracać pustą tablicę. (do przetestowania później, gdy będzie można podmieniać plik contacts.json). Jeśli udało się odczytać poprawnie to tablicę kontaktów z pliku.
 
+### Zapis listy kontaktów do pliku
+
+Dodanie metody zapisu json do pliku + testy.

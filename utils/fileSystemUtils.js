@@ -16,3 +16,15 @@ exports.readJsonFile = (filename, pathRelativeToRoot) => {
         });
     });
 };
+
+exports.saveJsonFile = (data, filename, pathRelativeToRoot) => {
+    // converts object data to JSON and saves to file
+    const fileAbsolutePath = path.resolve(pathRelativeToRoot, filename);
+
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fileAbsolutePath, JSON.stringify(data), err => {
+            if (err) reject(err);
+            resolve(true);
+        });
+    });
+};
