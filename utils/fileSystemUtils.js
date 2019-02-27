@@ -28,3 +28,15 @@ exports.saveJsonFile = (data, filename, pathRelativeToRoot) => {
         });
     });
 };
+
+exports.deleteFile = (filename, pathRelativeToRoot) => {
+    // deletes file
+    const fileAbsolutePath = path.resolve(pathRelativeToRoot, filename);
+
+    return new Promise((resolve, reject) => {
+        fs.unlink(fileAbsolutePath, err => {
+            if (err) reject(err);
+            resolve(true);
+        });
+    });
+};

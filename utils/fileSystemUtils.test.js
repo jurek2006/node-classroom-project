@@ -52,6 +52,7 @@ describe('fileSystemUtils', () => {
                     expect(result).toBeTruthy();
                 })
                 .then(() => {
+                    // read and parse saved file
                     return fileSystemUtils.readJsonFile(
                         file.filename,
                         file.path
@@ -63,6 +64,10 @@ describe('fileSystemUtils', () => {
                     expect(JSON.stringify(readData)).toBe(
                         JSON.stringify(objectToSave)
                     );
+                })
+                .then(() => {
+                    // delete created file
+                    return fileSystemUtils.deleteFile(file.filename, file.path);
                 });
         });
 

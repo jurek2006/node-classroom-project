@@ -98,3 +98,5 @@ W modelu contact. Jeśli był błąd odczytu pliku powinna zwracać pustą tabli
 ### Zapis listy kontaktów do pliku
 
 Dodanie metody zapisu json do pliku + testy.
+
+Dodać do testów usuwanie zapisanych plików po każdym z nich.
