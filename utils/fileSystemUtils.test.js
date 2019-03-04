@@ -2,38 +2,38 @@ const expect = require('expect');
 const fileSystemUtils = require('./fileSystemUtils');
 
 describe('fileSystemUtils', () => {
-    describe('readJsonFile', () => {
-        it('should read and parse json file', () => {
-            return fileSystemUtils
-                .readJsonFile('contacts.json', 'data')
-                .then(data => {
-                    expect(Array.isArray(data)).toBeTruthy();
-                    expect(data.length).toBe(2);
-                    expect(data).toContainObject({
-                        id: '1',
-                        firstName: 'Jurek',
-                        lastName: 'Skowron'
-                    });
-                    expect(data).toContainObject({
-                        id: '2',
-                        firstName: 'Franek',
-                        lastName: 'Dolas'
-                    });
-                });
-        });
+    // describe('readJsonFile', () => {
+    //     it('should read and parse json file', () => {
+    //         return fileSystemUtils
+    //             .readJsonFile('contacts.json', 'data')
+    //             .then(data => {
+    //                 expect(Array.isArray(data)).toBeTruthy();
+    //                 expect(data.length).toBe(2);
+    //                 expect(data).toContainObject({
+    //                     id: '1',
+    //                     firstName: 'Jurek',
+    //                     lastName: 'Skowron'
+    //                 });
+    //                 expect(data).toContainObject({
+    //                     id: '2',
+    //                     firstName: 'Franek',
+    //                     lastName: 'Dolas'
+    //                 });
+    //             });
+    //     });
 
-        it("should throw error when file doesn't exists", () => {
-            return expect(
-                fileSystemUtils.readJsonFile('notExisting.json', 'data')
-            ).rejects.toBeTruthy();
-        });
+    //     it("should throw error when file doesn't exists", () => {
+    //         return expect(
+    //             fileSystemUtils.readJsonFile('notExisting.json', 'data')
+    //         ).rejects.toBeTruthy();
+    //     });
 
-        it('should throw error if file is not proper JSON', () => {
-            return expect(
-                fileSystemUtils.readJsonFile('notProper.json', 'data')
-            ).rejects.toBeTruthy();
-        });
-    });
+    //     it('should throw error if file is not proper JSON', () => {
+    //         return expect(
+    //             fileSystemUtils.readJsonFile('notProper.json', 'data')
+    //         ).rejects.toBeTruthy();
+    //     });
+    // });
 
     describe('saveJsonFile', () => {
         const objectToSave = {

@@ -95,8 +95,16 @@ Proste wyświetlenie listy kontaktów w paragrafach
 
 W modelu contact. Jeśli był błąd odczytu pliku powinna zwracać pustą tablicę. (do przetestowania później, gdy będzie można podmieniać plik contacts.json). Jeśli udało się odczytać poprawnie to tablicę kontaktów z pliku.
 
-### Zapis listy kontaktów do pliku
+### Zapis kontaktu do pliku
 
 Dodanie metody zapisu json do pliku + testy.
 
-Dodać do testów usuwanie zapisanych plików po każdym z nich.
+Dodanie metody usuwającej plik i rozbudowanie testu zapisującego plik o jego usunięcie na zakończenie.
+
+Dodanie metody zapisującej kontakty w modelu contacts. Naprawić test getContacts (bo teraz, przy zapisie przecież zmieniają się dane, a w teście jest "na sztywno").
+
+Dodać metodę zapisu pojedynczego kontaktu w modelu contact. - Naprawić - żeby była edycja, gdy podajemy istniejące już id.
+
+Do zrobienia - **zrefaktoryzować .save kontaktu w modelu contact. + Zastanowić się w nim, czy jeśli podano contakt ze zdefiniowanym id, ale taki nie został znaleziony na liście zapisanych kontaktów, to powinien zostać wyrzucony błąd - zamiast zapisania kontaktu z nowym id.** 
+
+Dodać formularz zapisywania nowego kontaktu.

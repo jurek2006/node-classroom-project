@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/contact/list', contactController.getContacts);
 
 router.get('/contact/add', contactController.getAddContacts);
+router.post('/contact/add', contactController.postAddContacts);
 
 router.get('/', (req, res, next) => {
     res.render('index', { title: 'Index' });

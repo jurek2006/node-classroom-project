@@ -19,6 +19,7 @@
     },
     "homepage": "https://github.com/jurek2006/node-classroom-project#readme",
     "dependencies": {
+        "body-parser": "^1.18.3",
         "ejs": "^2.6.1",
         "eslint": "^5.13.0",
         "express": "^4.16.4"

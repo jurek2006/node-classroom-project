@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+var bodyParser = require('body-parser');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
     app.locals.path = req.originalUrl;
     next();
 });
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
 app.use(notFoundController);
 
