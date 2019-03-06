@@ -17,7 +17,7 @@ Bez wymyślnego stylowania - użycie Bootstrap 4. Do widoków ejs.
 
 ### Używane:
 
-express, eslint, nodemon
+express, eslint, nodemon, uuid, mocha + expect
 
 
 
@@ -114,3 +114,7 @@ Dodać formularz zapisywania nowego kontaktu.
 Na razie strona wyświetlania szczegółów - bez formularza. 
 
 Dodanie w modelu contacts metody getById - pobierającej dane kontaktu o zadanym id i wyświetlaniu szczegółów kontaktu.
+
+### Zamiana losowego id na unikalny
+
+Dodanie uuid

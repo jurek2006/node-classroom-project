@@ -1,8 +1,9 @@
 const { readJsonFile, saveJsonFile } = require('../utils/fileSystemUtils');
+const uuidv4 = require('uuid/v4');
 
 module.exports = class Contact {
     constructor(id, firstName, lastName) {
-        this.id = id || Math.random() * 10000;
+        this.id = id || uuidv4();
         this.firstName = firstName;
         this.lastName = lastName;
     }

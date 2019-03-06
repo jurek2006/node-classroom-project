@@ -25,7 +25,7 @@ exports.postAddContacts = (req, res, next) => {
 };
 
 exports.getContactDetail = (req, res, next) => {
-    const id = +req.params.id;
+    const id = req.params.id;
     Contact.getById(id)
         .then(contact => {
             if (contact) {
