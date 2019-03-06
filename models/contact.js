@@ -68,4 +68,15 @@ module.exports = class Contact {
     static saveContacts(arrayOfContacts) {
         return saveJsonFile(arrayOfContacts, 'contacts.json', 'data');
     }
+
+    static getById(id) {
+        return Contact.getContacts()
+            .then(contacts => {
+                return contacts.find(contact => contact.id === id);
+            })
+            .catch(err => {
+                console.log(err);
+                throw err;
+            });
+    }
 };

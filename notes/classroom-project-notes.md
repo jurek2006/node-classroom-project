@@ -108,3 +108,9 @@ Dodać metodę zapisu pojedynczego kontaktu w modelu contact. - Naprawić - żeb
 Do zrobienia - **zrefaktoryzować .save kontaktu w modelu contact. + Zastanowić się w nim, czy jeśli podano contakt ze zdefiniowanym id, ale taki nie został znaleziony na liście zapisanych kontaktów, to powinien zostać wyrzucony błąd - zamiast zapisania kontaktu z nowym id.** 
 
 Dodać formularz zapisywania nowego kontaktu.
+
+### Strona wyświetlania szczegółów kontaktu
+
+Na razie strona wyświetlania szczegółów - bez formularza. 
+
+Dodanie w modelu contacts metody getById - pobierającej dane kontaktu o zadanym id i wyświetlaniu szczegółów kontaktu.

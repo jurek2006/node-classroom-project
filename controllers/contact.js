@@ -23,3 +23,24 @@ exports.postAddContacts = (req, res, next) => {
             console.log(err);
         });
 };
+
+exports.getContactDetail = (req, res, next) => {
+    const id = +req.params.id;
+    Contact.getById(id)
+        .then(contact => {
+            if (contact) {
+                res.render('contact/contact-details', {
+                    title: 'Contact details',
+                    contact
+                });
+            } else {
+                throw new Error(`Not found contact with id ${id}`);
+            }
+        })
+        .catch(err => {
+            res.render('contact/contact-not-found', {
+                title: 'Contact not found',
+                err
+            });
+        });
+};
