@@ -122,3 +122,9 @@ Dodanie uuid
 ### Edycja kontaktu
 
 Przerobić formularz addContact na editContact
+
+### Refaktor Contact.save()
+
+Tak, żeby dodawała nowy kontakt, gdy nie podano id, uaktualniała gdy podano id i konktakt o takim istnieje. Gdy nie istnieje (i podano) - zwracać błąd.
+
+Wyświetlanie błędu, gdy nie udało się zapisać/uaktualnić

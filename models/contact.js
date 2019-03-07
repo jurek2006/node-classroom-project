@@ -3,7 +3,7 @@ const uuidv4 = require("uuid/v4");
 
 module.exports = class Contact {
     constructor(id, firstName, lastName) {
-        this.id = id || uuidv4();
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -13,39 +13,25 @@ module.exports = class Contact {
         // otherwise checks if contact with given id exists and if so updates the contact
         const contactToSave = this;
 
-        return Contact.getContacts()
-            .then(contactsList => {
-                if (
-                    !contactToSave.id ||
-                    (contactToSave.id &&
-                        !contactsList.find(
-                            contact => contact.id === contactToSave.id
-                        ))
-                ) {
-                    console.log("zapis");
-                    return Contact.saveContacts([
-                        ...contactsList,
-                        contactToSave
-                    ]);
-                } else if (
-                    contactToSave.id &&
-                    contactsList.find(
-                        contact => contact.id === contactToSave.id
-                    )
-                ) {
-                    // if exists contact with given id - replace it with contactToSave
-                    console.log("już jest");
-                    const updatedList = contactsList.map(contact =>
-                        contact.id === contactToSave.id
-                            ? contactToSave
-                            : contact
-                    );
-                    return Contact.saveContacts(updatedList);
-                }
-            })
-            .catch(err => {
-                return err;
-            });
+        return Contact.getContacts().then(contactsList => {
+            if (!contactToSave.id) {
+                // not given contact id - create and save new one
+                contactToSave.id = uuidv4();
+                return Contact.saveContacts([...contactsList, contactToSave]);
+            } else if (
+                contactToSave.id &&
+                contactsList.find(contact => contact.id === contactToSave.id)
+            ) {
+                // if exists contact with given id - replace it with contactToSave
+                const updatedList = contactsList.map(contact =>
+                    contact.id === contactToSave.id ? contactToSave : contact
+                );
+                return Contact.saveContacts(updatedList);
+            } else {
+                // there's no contact with given id - error
+                throw new Error("Contact with given id doesn't exist");
+            }
+        });
     }
 
     static getContacts() {

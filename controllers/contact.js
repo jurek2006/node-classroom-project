@@ -20,11 +20,15 @@ exports.postSaveContact = (req, res, next) => {
     contact
         .save()
         .then(returned => {
-            console.log(returned);
             res.redirect("/contact/list");
         })
         .catch(err => {
-            console.log(err);
+            console.log("Can't save contact.", err);
+            res.render("error", {
+                title: "Error",
+                error: err,
+                message: `Can't save contact with id ${id}`
+            });
         });
 };
 
