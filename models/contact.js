@@ -1,5 +1,5 @@
-const { readJsonFile, saveJsonFile } = require('../utils/fileSystemUtils');
-const uuidv4 = require('uuid/v4');
+const { readJsonFile, saveJsonFile } = require("../utils/fileSystemUtils");
+const uuidv4 = require("uuid/v4");
 
 module.exports = class Contact {
     constructor(id, firstName, lastName) {
@@ -9,14 +9,9 @@ module.exports = class Contact {
     }
 
     save() {
+        // if not contactToSave.id passed - adds new contact
+        // otherwise checks if contact with given id exists and if so updates the contact
         const contactToSave = this;
-
-        // 1. read contacts list from file
-        // 2.
-        // if contactToSave doesn't have id or contact with given id doesn't exist (find)
-        // > append contact to contact list
-        // else > replace contact in the list with new values
-        // 3. save contacts list to file
 
         return Contact.getContacts()
             .then(contactsList => {
@@ -27,7 +22,7 @@ module.exports = class Contact {
                             contact => contact.id === contactToSave.id
                         ))
                 ) {
-                    console.log('zapis');
+                    console.log("zapis");
                     return Contact.saveContacts([
                         ...contactsList,
                         contactToSave
@@ -38,8 +33,8 @@ module.exports = class Contact {
                         contact => contact.id === contactToSave.id
                     )
                 ) {
-                    // if exists contact with given id
-                    console.log('już jest');
+                    // if exists contact with given id - replace it with contactToSave
+                    console.log("już jest");
                     const updatedList = contactsList.map(contact =>
                         contact.id === contactToSave.id
                             ? contactToSave
@@ -56,7 +51,7 @@ module.exports = class Contact {
     static getContacts() {
         // gets all contacts, returns promise which resolves to an array of contact objects
         // if error in reading json resolves to empty array
-        return readJsonFile('contacts.json', 'data')
+        return readJsonFile("contacts.json", "data")
             .then(data => {
                 return data;
             })
@@ -67,7 +62,7 @@ module.exports = class Contact {
     }
 
     static saveContacts(arrayOfContacts) {
-        return saveJsonFile(arrayOfContacts, 'contacts.json', 'data');
+        return saveJsonFile(arrayOfContacts, "contacts.json", "data");
     }
 
     static getById(id) {

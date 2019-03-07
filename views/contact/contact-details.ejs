@@ -8,5 +8,7 @@
     <p>Id: <%= contact.id %></p>
     <p>First name: <%= contact.firstName %></p>
     <p>Last name: <%= contact.lastName %></p>
-
+    <form action="<%= contact.id %>/edit">
+        <button type="submit">Edytuj</button>
+    </form>
     <%- include('../includes/html-end.ejs') %>

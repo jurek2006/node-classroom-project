@@ -118,3 +118,7 @@ Dodanie w modelu contacts metody getById - pobierającej dane kontaktu o zadanym
 ### Zamiana losowego id na unikalny
 
 Dodanie uuid
+
+### Edycja kontaktu
+
+Przerobić formularz addContact na editContact
