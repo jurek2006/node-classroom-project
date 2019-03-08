@@ -1,0 +1,17 @@
+<%- include('../includes/html-head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../includes/navbar.ejs') %>
+    <h1><%= title %></h1>
+
+    <p>Do you really want to delete contact <span style="font-weight: bold"> <%= contact.firstName %> <%= contact.lastName %> </span>?</p>
+
+    <form action="" method="POST">
+        <button type="submit">Yes, delete contact</button>
+        <input type="hidden" name="id" value="<%= contact.id %>">
+    </form>
+    
+
+    <%- include('../includes/html-end.ejs') %>

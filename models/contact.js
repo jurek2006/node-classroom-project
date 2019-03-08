@@ -61,4 +61,18 @@ module.exports = class Contact {
                 throw err;
             });
     }
+
+    static deleteById(id) {
+        return Contact.getContacts().then(contacts => {
+            const contactToDelete = contacts.find(contact => contact.id === id);
+            if (contactToDelete) {
+                return Contact.saveContacts(
+                    contacts.filter(contact => contact !== contactToDelete)
+                );
+            } else {
+                // not found contact with given id
+                throw new Error(`Can't find contact with id ${id}`);
+            }
+        });
+    }
 };

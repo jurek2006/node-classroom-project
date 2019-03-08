@@ -75,3 +75,42 @@ exports.getContactEdit = (req, res, next) => {
             });
         });
 };
+
+exports.getContactDelete = (req, res, next) => {
+    // ask about confirmation od contact deletion
+    const id = req.params.id;
+    Contact.getById(id)
+        .then(contact => {
+            if (contact) {
+                res.render("contact/contact-delete-confirm", {
+                    title: "Confirm delete contact",
+                    contact
+                });
+            } else {
+                throw new Error(`Not found contact with id ${id}.`);
+            }
+        })
+        .catch(err => {
+            res.render("error", {
+                title: "Contact not found",
+                error: err,
+                message: ``
+            });
+        });
+};
+
+exports.postContactDelete = (req, res, next) => {
+    // delete contact with id passed from form
+    const { id } = req.body;
+    Contact.deleteById(id)
+        .then(() => {
+            res.redirect("/contact/list");
+        })
+        .catch(err => {
+            res.render("error", {
+                title: "Can't delete contact",
+                error: err,
+                message: ``
+            });
+        });
+};

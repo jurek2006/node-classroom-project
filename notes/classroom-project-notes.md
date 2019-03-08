@@ -132,3 +132,7 @@ Wyświetlanie błędu, gdy nie udało się zapisać/uaktualnić
 ### Refactor contact-not-found
 
 Przenieść obsługę do widoku error
+
+### Usuwanie kontaktów
+
+Usuwanie kontaktów, z potwierdzeniem

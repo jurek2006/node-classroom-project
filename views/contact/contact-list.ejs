@@ -6,10 +6,13 @@
     <%- include('../includes/navbar.ejs') %>
     <h1>Contact list</h1>
 
+    <% if(contacts.length > 0) {%>
     <ul>
         <% for(let contact of contacts) { %>
             <li><a href="/contact/<%= contact.id %>"> <%= contact.firstName %> <%= contact.lastName %></a></li>
         <% } %>
     </ul>
-
+    <% } else { %>
+        <p>There are no contacts yet.</p>
+    <% } %>
     <%- include('../includes/html-end.ejs') %>
