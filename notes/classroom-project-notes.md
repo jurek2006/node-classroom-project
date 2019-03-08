@@ -128,3 +128,7 @@ Przerobić formularz addContact na editContact
 Tak, żeby dodawała nowy kontakt, gdy nie podano id, uaktualniała gdy podano id i konktakt o takim istnieje. Gdy nie istnieje (i podano) - zwracać błąd.
 
 Wyświetlanie błędu, gdy nie udało się zapisać/uaktualnić
+
+### Refactor contact-not-found
+
+Przenieść obsługę do widoku error

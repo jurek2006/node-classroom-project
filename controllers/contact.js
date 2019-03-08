@@ -46,9 +46,10 @@ exports.getContactDetail = (req, res, next) => {
             }
         })
         .catch(err => {
-            res.render("contact/contact-not-found", {
+            res.render("error", {
                 title: "Contact not found",
-                err
+                error: err,
+                message: ``
             });
         });
 };
@@ -67,9 +68,10 @@ exports.getContactEdit = (req, res, next) => {
             }
         })
         .catch(err => {
-            res.render("contact/contact-not-found", {
+            res.render("error", {
                 title: "Contact not found",
-                err
+                error: err,
+                message: ``
             });
         });
 };
