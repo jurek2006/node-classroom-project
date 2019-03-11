@@ -25,6 +25,7 @@
         <% if (contact && editMode){ %>
                 <!-- editing contact -->
                 <button type="submit">Update contact</button>
+                <a href="<%= contact.id%>/delete">Delete contact</a>
                 <a href="<%= contact.id%>">Cancel</a>
         <% } else if(contact && !editMode) { %>
                 <!-- contact's detail view -->

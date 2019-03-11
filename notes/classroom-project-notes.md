@@ -144,3 +144,7 @@ Z zablokowaną domyślnie możliwością edycji
 Jak zrobione usunąć getContactDetail z kontrolerów i plik detail.ejs 
 
 Zmienić, żeby Contact.save() zwracał id utworzonego/uaktualnionego kontaktu (nie jest to w sumie potrzebne)
+
+### Przycisk usuwania kontaktu w formularzu edycji
+
+Naprawić Usuń i cancel w formularzu edit

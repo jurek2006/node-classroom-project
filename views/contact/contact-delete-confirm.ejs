@@ -10,8 +10,8 @@
 
     <form action="" method="POST">
         <button type="submit">Yes, delete contact</button>
+        <a href="../<%= contact.id %>">Cancel</a>
         <input type="hidden" name="id" value="<%= contact.id %>">
     </form>
-    
 
     <%- include('../includes/html-end.ejs') %>
