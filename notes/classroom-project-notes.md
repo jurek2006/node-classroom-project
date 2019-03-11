@@ -136,3 +136,11 @@ Przenieść obsługę do widoku error
 ### Usuwanie kontaktów
 
 Usuwanie kontaktów, z potwierdzeniem
+
+### Widok formularza contact-edit zamiast contact details
+
+Z zablokowaną domyślnie możliwością edycji
+
+Jak zrobione usunąć getContactDetail z kontrolerów i plik detail.ejs 
+
+Zmienić, żeby Contact.save() zwracał id utworzonego/uaktualnionego kontaktu (nie jest to w sumie potrzebne)
