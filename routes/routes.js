@@ -9,7 +9,6 @@ router.get("/contact/add", contactController.getAddContact);
 router.post("/contact/save", contactController.postSaveContact);
 
 router.get("/contact/:id", contactController.getContactEdit);
-router.get("/contact/:id/edit", contactController.getContactEdit);
 router.get("/contact/:id/delete", contactController.getContactDelete); //confirm deletion
 router.post("/contact/:id/delete", contactController.postContactDelete); //delete contact
 
