@@ -4,7 +4,7 @@
     "description": "Project made to solidify knowledge in basic Node (after some part of Node course) ",
     "main": "app.js",
     "scripts": {
-        "test": "mocha **/*.test.js --exit",
+        "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js --exit",
         "test-watch": "nodemon -e js --exec \"npm test\"",
         "start": "nodemon -e js app.js"
     },

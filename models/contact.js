@@ -1,5 +1,6 @@
-const { readJsonFile, saveJsonFile } = require("../utils/fileSystemUtils");
 const uuidv4 = require("uuid/v4");
+const { readJsonFile, saveJsonFile } = require("../utils/fileSystemUtils");
+const config = require("../config/config");
 
 module.exports = class Contact {
     constructor(id, firstName, lastName) {
@@ -48,7 +49,10 @@ module.exports = class Contact {
     static getContacts() {
         // gets all contacts, returns promise which resolves to an array of contact objects
         // if error in reading json resolves to empty array
-        return readJsonFile("contacts.json", "data")
+        return readJsonFile(
+            config.contactsFile.filename,
+            config.contactsFile.path
+        )
             .then(data => {
                 return data;
             })
@@ -59,7 +63,11 @@ module.exports = class Contact {
     }
 
     static saveContacts(arrayOfContacts) {
-        return saveJsonFile(arrayOfContacts, "contacts.json", "data");
+        return saveJsonFile(
+            arrayOfContacts,
+            config.contactsFile.filename,
+            config.contactsFile.path
+        );
     }
 
     static getById(id) {

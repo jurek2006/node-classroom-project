@@ -1,16 +1,16 @@
-const express = require('express');
-const path = require('path');
-var bodyParser = require('body-parser');
+const express = require("express");
+const path = require("path");
+var bodyParser = require("body-parser");
 
 const app = express();
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set("view engine", "ejs");
+app.set("views", "views");
 
-const routes = require('./routes/routes');
-const notFoundController = require('./controllers/notFound404');
+const routes = require("./routes/routes");
+const notFoundController = require("./controllers/notFound404");
 
 //static serve resources from public folder
-app.use(express.static(path.resolve('public')));
+app.use(express.static(path.resolve("public")));
 app.use((req, res, next) => {
     // pass url of current site to ejs views by app.locals (can be accessed in ejs as locals.path)
     app.locals.path = req.originalUrl;

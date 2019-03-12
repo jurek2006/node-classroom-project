@@ -148,3 +148,9 @@ Zmienić, żeby Contact.save() zwracał id utworzonego/uaktualnionego kontaktu (
 ### Przycisk usuwania kontaktu w formularzu edycji
 
 Naprawić Usuń i cancel w formularzu edit
+
+### Testy
+
+Przeniesienie do konfiguracji ścieżki do zapisu kontaktów (+ osobna ścieżka do testów).
+
+Ustawienie zmiennej środowiskowej na testy dla testów

@@ -1,5 +1,5 @@
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 
 exports.readJsonFile = (filename, pathRelativeToRoot) => {
     // reads and parses JSON file

@@ -1,7 +1,7 @@
-const expect = require('expect');
-const fileSystemUtils = require('./fileSystemUtils');
+const expect = require("expect");
+const fileSystemUtils = require("./fileSystemUtils");
 
-describe('fileSystemUtils', () => {
+describe("fileSystemUtils", () => {
     // describe('readJsonFile', () => {
     //     it('should read and parse json file', () => {
     //         return fileSystemUtils
@@ -35,16 +35,16 @@ describe('fileSystemUtils', () => {
     //     });
     // });
 
-    describe('saveJsonFile', () => {
+    describe("saveJsonFile", () => {
         const objectToSave = {
-            first: 'sthFirst',
+            first: "sthFirst",
             bool: true,
             value: 123
         };
-        it('should write object to json file in existing directory', () => {
+        it("should write object to json file in existing directory", () => {
             const file = {
-                filename: 'test.json',
-                path: 'data'
+                filename: "test.json",
+                path: "data"
             };
             return fileSystemUtils
                 .saveJsonFile(objectToSave, file.filename, file.path)
@@ -71,12 +71,12 @@ describe('fileSystemUtils', () => {
                 });
         });
 
-        it('should return error if directory to save does not exist', () => {
+        it("should return error if directory to save does not exist", () => {
             return expect(
                 fileSystemUtils.saveJsonFile(
                     objectToSave,
-                    'test.json',
-                    'not-existing'
+                    "test.json",
+                    "not-existing"
                 )
             ).rejects.toBeTruthy();
         });
