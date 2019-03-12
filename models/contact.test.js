@@ -1,7 +1,7 @@
-const expect = require('expect');
-const contactModule = require('./contact');
+const expect = require("expect");
+const Contact = require("./contact");
 
-describe('model contact.js', () => {
+describe("model contact.js", () => {
     // describe('getContacts()', () => {
     //     it('should get contacts from contacts json file', () => {
     //         return contactModule.getContacts().then(contacts => {
@@ -21,13 +21,11 @@ describe('model contact.js', () => {
     //         });
     //     });
     // });
-    describe('saveContacts()', () => {
-        return contactModule
-            .saveContacts([
-                new contactModule(3, 'Grzegorz', 'Brzęczyszczykiewicz')
-            ])
-            .then(status => {
-                expect(status).toBeTruthy();
-            });
+    it("saveContacts()", () => {
+        return Contact.saveContacts([
+            new Contact(3, "Grzegorz", "Brzęczyszczykiewicz")
+        ]).then(status => {
+            expect(status).toBeTruthy();
+        });
     });
 });

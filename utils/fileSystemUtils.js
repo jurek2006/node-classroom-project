@@ -19,6 +19,7 @@ exports.readJsonFile = (filename, pathRelativeToRoot) => {
 
 exports.saveJsonFile = (data, filename, pathRelativeToRoot) => {
     // converts object data to JSON and saves to file
+    // resolves to true if succeeded
     const fileAbsolutePath = path.resolve(pathRelativeToRoot, filename);
 
     return new Promise((resolve, reject) => {

@@ -2,38 +2,52 @@ const expect = require("expect");
 const fileSystemUtils = require("./fileSystemUtils");
 
 describe("fileSystemUtils", () => {
-    // describe('readJsonFile', () => {
-    //     it('should read and parse json file', () => {
-    //         return fileSystemUtils
-    //             .readJsonFile('contacts.json', 'data')
-    //             .then(data => {
-    //                 expect(Array.isArray(data)).toBeTruthy();
-    //                 expect(data.length).toBe(2);
-    //                 expect(data).toContainObject({
-    //                     id: '1',
-    //                     firstName: 'Jurek',
-    //                     lastName: 'Skowron'
-    //                 });
-    //                 expect(data).toContainObject({
-    //                     id: '2',
-    //                     firstName: 'Franek',
-    //                     lastName: 'Dolas'
-    //                 });
-    //             });
-    //     });
+    describe("readJsonFile", () => {
+        it("should read and parse data from json file", () => {
+            return fileSystemUtils
+                .readJsonFile(
+                    "preparedContacts.json",
+                    "data-test/fileSystemUtils-test"
+                )
+                .then(data => {
+                    expect(Array.isArray(data)).toBeTruthy();
+                    expect(data.length).toBe(3);
+                    expect(data).toContainObject({
+                        id: "c5fc9029-9e38-4c68-b851-8ef3a034f7e9",
+                        firstName: "Franek",
+                        lastName: "Francieszek"
+                    });
+                    expect(data).toContainObject({
+                        id: "f5224122-f919-42fa-9545-40ea2879b4cd",
+                        firstName: "Grzegorz",
+                        lastName: "Wrona"
+                    });
+                    expect(data).toContainObject({
+                        id: "8a0aa097-da53-4498-a1cb-7f727441bb1e",
+                        firstName: "Adam",
+                        lastName: "Małysz"
+                    });
+                });
+        });
 
-    //     it("should throw error when file doesn't exists", () => {
-    //         return expect(
-    //             fileSystemUtils.readJsonFile('notExisting.json', 'data')
-    //         ).rejects.toBeTruthy();
-    //     });
+        it("should reject when file doesn't exists", () => {
+            return expect(
+                fileSystemUtils.readJsonFile(
+                    "notExisting.json",
+                    "data-test/fileSystemUtils-test"
+                )
+            ).rejects.toBeTruthy();
+        });
 
-    //     it('should throw error if file is not proper JSON', () => {
-    //         return expect(
-    //             fileSystemUtils.readJsonFile('notProper.json', 'data')
-    //         ).rejects.toBeTruthy();
-    //     });
-    // });
+        it("should reject if file is not proper JSON", () => {
+            return expect(
+                fileSystemUtils.readJsonFile(
+                    "notProper.json",
+                    "data-test/fileSystemUtils-test"
+                )
+            ).rejects.toBeTruthy();
+        });
+    });
 
     describe("saveJsonFile", () => {
         const objectToSave = {
@@ -41,18 +55,19 @@ describe("fileSystemUtils", () => {
             bool: true,
             value: 123
         };
-        it("should write object to json file in existing directory", () => {
+        it("should write object to json file in existing directory and then properly read data from the file", () => {
             const file = {
                 filename: "test.json",
-                path: "data"
+                path: "data-test/fileSystemUtils-test"
             };
             return fileSystemUtils
                 .saveJsonFile(objectToSave, file.filename, file.path)
                 .then(result => {
+                    // expect status true if saving succeed
                     expect(result).toBeTruthy();
                 })
                 .then(() => {
-                    // read and parse saved file
+                    // read and parse data from saved file
                     return fileSystemUtils.readJsonFile(
                         file.filename,
                         file.path
@@ -71,7 +86,7 @@ describe("fileSystemUtils", () => {
                 });
         });
 
-        it("should return error if directory to save does not exist", () => {
+        it("should reject if directory to save does not exist", () => {
             return expect(
                 fileSystemUtils.saveJsonFile(
                     objectToSave,

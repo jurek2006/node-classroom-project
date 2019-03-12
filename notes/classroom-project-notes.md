@@ -149,8 +149,17 @@ Zmienić, żeby Contact.save() zwracał id utworzonego/uaktualnionego kontaktu (
 
 Naprawić Usuń i cancel w formularzu edit
 
-### Testy
+### Testy - osobne ścieżki dla testów
 
 Przeniesienie do konfiguracji ścieżki do zapisu kontaktów (+ osobna ścieżka do testów).
 
 Ustawienie zmiennej środowiskowej na testy dla testów
+
+### Uporządkować i rozbudować testy
+
+Na pewno dodać/naprawić test który sprawdza, czy udało się zapisać (gdy folder zapisu nie istnieje).
+
+Testowanie **readJsonFile** i **saveJsonFile** 
+
+Testowanie **modelu contacts**
+

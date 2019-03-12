@@ -6,7 +6,7 @@ const contactsFile = {
     // (to not interfere with stored "real" data)
 
     filename: "contacts.json",
-    path: env === "test" ? "data/test" : "data"
+    path: env === "test" ? "data-test" : "data"
 };
 
 module.exports = { contactsFile };
