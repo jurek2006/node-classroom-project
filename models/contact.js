@@ -10,8 +10,8 @@ module.exports = class Contact {
     }
 
     save() {
-        // if not contactToSave.id passed - adds new contact
-        // otherwise checks if contact with given id exists and if so updates the contact
+        // if Contact instace doesn't have defined id - adds new contact to the contacts file ()
+        // otherwise checks if contact with given id exists in file and if so updates the contact
 
         // if contact saved/updated properly returns object with user data
         // (if user created object contains id which has been assignet to the user)

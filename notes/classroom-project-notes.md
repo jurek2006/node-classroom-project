@@ -163,3 +163,13 @@ Testowanie **readJsonFile** i **saveJsonFile**
 
 Testowanie **modelu contacts**
 
+- poprawne pobieranie kontaktów
+- poprawne zapisywanie wszystkich kontaktów
+- poprawne dodawanie nowego kontaktu
+- poprawne uaktualnianie istniejącego kontaktu
+- poprawne pobieranie istniejącego kontaktu za pomocą getById (użycie Promise.all do testowania po kolei)
+
+
+
+
+

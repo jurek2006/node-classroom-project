@@ -5,7 +5,7 @@
     "main": "app.js",
     "scripts": {
         "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js --exit",
-        "test-watch": "nodemon -e js --exec \"npm test\"",
+        "test-watch": "nodemon -e js --exec \"clear && npm test\"",
         "start": "nodemon -e js app.js"
     },
     "repository": {
