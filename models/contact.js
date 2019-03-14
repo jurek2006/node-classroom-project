@@ -63,6 +63,7 @@ module.exports = class Contact {
     }
 
     static saveContacts(arrayOfContacts) {
+        // returns promise which resolves to true if succeed
         return saveJsonFile(
             arrayOfContacts,
             config.contactsFile.filename,
@@ -71,6 +72,7 @@ module.exports = class Contact {
     }
 
     static getById(id) {
+        // returns promise which resolves to Contact data if succeed and to undefined if fail
         return Contact.getContacts()
             .then(contacts => {
                 return contacts.find(contact => contact.id === id);

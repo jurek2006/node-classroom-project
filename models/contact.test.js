@@ -171,5 +171,90 @@ describe("model contact.js", () => {
                 });
             });
         });
+
+        it("should return undefined from Contact.getId when contact with given id does not exist", () => {
+            return Contact.getById(uuidv4()).then(contact => {
+                expect(contact).toBeUndefined();
+            });
+        });
+    });
+
+    describe("Contact.deleteById", () => {
+        const startingContacts = [
+            new Contact(uuidv4(), "Adam", "Małysz"),
+            new Contact(uuidv4(), "Kamil", "Stoch"),
+            new Contact(uuidv4(), "Dawid", "Kubacki")
+        ];
+
+        before(() => {
+            // delete file containing contacts
+            return deleteFile(
+                config.contactsFile.filename,
+                config.contactsFile.path
+            ).then(() => {
+                // populate contacts from startingContacts
+                return Contact.saveContacts(startingContacts);
+            });
+        });
+
+        it("should delete random contact with given id", () => {
+            // should delete random contact from populated
+            const indexOfElementToDelete = getRandomInt(
+                0,
+                startingContacts.length
+            );
+            return Contact.deleteById(
+                startingContacts[indexOfElementToDelete].id
+            )
+                .then(status => {
+                    expect(status).toBe(true);
+                    // get contacts to verify if one was deleted
+                    return Contact.getContacts();
+                })
+                .then(contacts => {
+                    expect(contacts.length).toBe(startingContacts.length - 1);
+                    // check if there is not anymore deleted contact
+                    expect(contacts).not.toContainObject({
+                        id: startingContacts[indexOfElementToDelete].id,
+                        firstName:
+                            startingContacts[indexOfElementToDelete].firstName,
+                        lastName:
+                            startingContacts[indexOfElementToDelete].lastName
+                    });
+                    // check if rest pupulated contacts still exist
+                    startingContacts.forEach((contactToFind, index) => {
+                        if (index !== indexOfElementToDelete) {
+                            expect(contacts).toContainObject({
+                                id: contactToFind.id,
+                                firstName: contactToFind.firstName,
+                                lastName: contactToFind.lastName
+                            });
+                        }
+                    });
+                });
+        });
+
+        it("should not delete contact and throw error if there's no contact with the id", () => {
+            // attemp to delet contact with some random id
+            return expect(Contact.deleteById(uuidv4()))
+                .rejects.toThrow("Can't find contact with id")
+                .then(() => {
+                    // when promise rejected double-check if contacts hasn't changed
+                    Contact.getContacts().then(contacts => {
+                        expect(Array.isArray(contacts)).toBeTruthy();
+                        // check if there is the same amount of contacts (as we're updating one)
+                        expect(contacts.length).toBe(startingContacts.length);
+
+                        // check if contacts still exist without any changes
+                        startingContacts.forEach((contactToFind, index) => {
+                            expect(contacts).toContainObject({
+                                id: contactToFind.id,
+                                firstName: contactToFind.firstName,
+                                lastName: contactToFind.lastName
+                            });
+                        });
+                    });
+                });
+        });
     });
 });

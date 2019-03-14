@@ -168,8 +168,11 @@ Testowanie **modelu contacts**
 - poprawne dodawanie nowego kontaktu
 - poprawne uaktualnianie istniejącego kontaktu
 - poprawne pobieranie istniejącego kontaktu za pomocą getById (użycie Promise.all do testowania po kolei)
+- otrzymanie undefined gdy próba pobrania Contact.getById dla id nieistniejącego kontaktu
+- poprawne usunięcie istniejącego kontaktu
+- nie-usunięcie kontaktu, gdy kontakt o zadanym id nie istnieje (toThrowError ?)
 
 
 
-
+Dodać - ? próba uaktualnienia istniejącego kontaktu, jednak id błędne
 
