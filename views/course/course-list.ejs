@@ -1,0 +1,18 @@
+<%- include('../includes/html-head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../includes/navbar.ejs') %>
+    <h1><%= title %></h1>
+
+    <% if(courses.length > 0) {%>
+    <ul>
+        <% for(let course of courses) { %>
+        <li><a href="/course/<%= course.id %>"> <%= course.firstName %> <%= course.lastName %></a></li>
+        <% } %>
+    </ul>
+    <% } else { %>
+    <p>There are no courses yet.</p>
+    <% } %>
+    <%- include('../includes/html-end.ejs') %>
