@@ -41,3 +41,27 @@ exports.postSaveCourse = (req, res, next) => {
             });
         });
 };
+
+exports.getCoursetEdit = (req, res, next) => {
+    const id = req.params.id;
+    const editMode = req.query.edit;
+    Course.getById(id)
+        .then(course => {
+            if (course) {
+                res.render("course/course-edit", {
+                    title: editMode ? "Edit course" : "Course details",
+                    course,
+                    editMode
+                });
+            } else {
+                throw new Error(`Not found course with id ${id}`);
+            }
+        })
+        .catch(err => {
+            res.render("error", {
+                title: "Course not found",
+                error: err,
+                message: ``
+            });
+        });
+};

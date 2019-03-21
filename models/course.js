@@ -66,17 +66,17 @@ module.exports = class Course {
         );
     }
 
-    // static getById(id) {
-    //     // returns promise which resolves to Contact data if succeed and to undefined if fail
-    //     return Contact.getContacts()
-    //         .then(contacts => {
-    //             return contacts.find(contact => contact.id === id);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //             throw err;
-    //         });
-    // }
+    static getById(id) {
+        // returns promise which resolves to Course data if succeed and to undefined if fail
+        return Course.getCourses()
+            .then(courses => {
+                return courses.find(course => course.id === id);
+            })
+            .catch(err => {
+                console.log(err);
+                throw err;
+            });
+    }
 
     // static deleteById(id) {
     //     return Contact.getContacts().then(contacts => {

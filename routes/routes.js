@@ -20,6 +20,8 @@ router.get("/course/list", courseController.getCourses);
 router.get("/course/add", courseController.getAddCourse);
 router.post("/course/save", courseController.postSaveCourse);
 
+router.get("/course/:id", courseController.getCoursetEdit);
+
 router.get("/", (req, res, next) => {
     res.render("index", { title: "Index" });
 });
