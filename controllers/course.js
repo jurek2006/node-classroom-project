@@ -65,3 +65,42 @@ exports.getCoursetEdit = (req, res, next) => {
             });
         });
 };
+
+exports.getCourseDelete = (req, res, next) => {
+    // ask about confirmation od course deletion
+    const id = req.params.id;
+    Course.getById(id)
+        .then(course => {
+            if (course) {
+                res.render("course/course-delete-confirm", {
+                    title: "Confirm delete course",
+                    course
+                });
+            } else {
+                throw new Error(`Not found course with id ${id}.`);
+            }
+        })
+        .catch(err => {
+            res.render("error", {
+                title: "Course not found",
+                error: err,
+                message: ``
+            });
+        });
+};
+
+exports.postCourseDelete = (req, res, next) => {
+    // delete course with id passed from form
+    const { id } = req.body;
+    Course.deleteById(id)
+        .then(() => {
+            res.redirect("/course/list");
+        })
+        .catch(err => {
+            res.render("error", {
+                title: "Can't delete course",
+                error: err,
+                message: ``
+            });
+        });
+};

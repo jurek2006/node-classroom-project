@@ -1,0 +1,17 @@
+<%- include('../includes/html-head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../includes/navbar.ejs') %>
+    <h1><%= title %></h1>
+
+    <p>Do you really want to delete course <span style="font-weight: bold"> <%= course.courseName %> </span>?</p>
+
+    <form action="" method="POST">
+        <button type="submit">Yes, delete course</button>
+        <a href="../<%= course.id %>">Cancel</a>
+        <input type="hidden" name="id" value="<%= course.id %>">
+    </form>
+
+    <%- include('../includes/html-end.ejs') %>

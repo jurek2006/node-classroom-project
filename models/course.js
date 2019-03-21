@@ -42,7 +42,7 @@ module.exports = class Course {
     }
 
     static getCourses() {
-        // gets all courses, returns promise which resolves to an array of contact objects
+        // gets all courses, returns promise which resolves to an array of course objects
         // if error in reading json resolves to empty array
         return readJsonFile(
             config.coursesFile.filename,
@@ -78,17 +78,17 @@ module.exports = class Course {
             });
     }
 
-    // static deleteById(id) {
-    //     return Contact.getContacts().then(contacts => {
-    //         const contactToDelete = contacts.find(contact => contact.id === id);
-    //         if (contactToDelete) {
-    //             return Contact.saveContacts(
-    //                 contacts.filter(contact => contact !== contactToDelete)
-    //             );
-    //         } else {
-    //             // not found contact with given id
-    //             throw new Error(`Can't find contact with id ${id}`);
-    //         }
-    //     });
-    // }
+    static deleteById(id) {
+        return Course.getCourses().then(courses => {
+            const courseToDelete = courses.find(course => course.id === id);
+            if (courseToDelete) {
+                return Course.saveCourses(
+                    courses.filter(course => course !== courseToDelete)
+                );
+            } else {
+                // not found course with given id
+                throw new Error(`Can't find course with id ${id}`);
+            }
+        });
+    }
 };
