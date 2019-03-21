@@ -9,7 +9,7 @@
     <% if(courses.length > 0) {%>
     <ul>
         <% for(let course of courses) { %>
-        <li><a href="/course/<%= course.id %>"> <%= course.firstName %> <%= course.lastName %></a></li>
+        <li><a href="/course/<%= course.id %>"> <%= course.courseName %></a></li>
         <% } %>
     </ul>
     <% } else { %>

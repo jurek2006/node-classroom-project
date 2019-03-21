@@ -17,7 +17,6 @@ exports.getAddContact = (req, res, next) => {
 exports.postSaveContact = (req, res, next) => {
     // if id passed we're in updating existing contact, otherwise we're creating and saving new one
     const { firstName, lastName, id } = req.body;
-    const editMode = req.query.edit;
     const contact = new Contact(id, firstName, lastName);
     contact
         .save()

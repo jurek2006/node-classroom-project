@@ -20,7 +20,7 @@ module.exports = class Contact {
         return Contact.getContacts()
             .then(contactsList => {
                 if (!contactToSave.id) {
-                    // not given contact id - create and save new one
+                    // not given contact id - save contact with generated new id
                     contactToSave.id = uuidv4();
                     Contact.saveContacts([...contactsList, contactToSave]);
                 } else if (
@@ -63,7 +63,7 @@ module.exports = class Contact {
     }
 
     static saveContacts(arrayOfContacts) {
-        // returns promise which resolves to true if succeed
+        // returns promise which resolves to true if saving succeed
         return saveJsonFile(
             arrayOfContacts,
             config.contactsFile.filename,
