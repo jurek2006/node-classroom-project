@@ -176,3 +176,4 @@ Testowanie **modelu contacts**
 
 Dodać - ? próba uaktualnienia istniejącego kontaktu, jednak id błędne
 
+## Dodać obsługę kursów
