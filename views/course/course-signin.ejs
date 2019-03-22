@@ -6,6 +6,7 @@
     <%- include('../includes/navbar.ejs') %>
     <h1><%= title %></h1>
 
+        <h2>Signed in:</h2>
         <% if(course.signedIn && course.signedIn.length > 0) {%>
         <ul>
             <% for(const contact of course.signedIn) { %>
@@ -15,5 +16,9 @@
         <% } else { %>
         <p>There are no signed in yet.</p>
         <% } %>
+
+        <h2>Sign in:</h2>
+        <%- include('../includes/contact-list.ejs') %>
+
 
     <%- include('../includes/html-end.ejs') %>

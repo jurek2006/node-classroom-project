@@ -1,4 +1,5 @@
 const Course = require("../models/course");
+const Contact = require("../models/contact");
 
 exports.getCourses = (req, res, next) => {
     Course.getCourses().then(courses => {
@@ -107,12 +108,26 @@ exports.postCourseDelete = (req, res, next) => {
 
 exports.getSignIn = (req, res, next) => {
     const id = req.params.id;
+    let currentCourse;
     Course.getById(id)
-        .then(course => {
-            console.log(course);
+        .then(
+            course => {
+                currentCourse = course;
+                return Contact.getContacts();
+            },
+            err => {
+                res.render("error", {
+                    title: "Can't find course",
+                    error: err,
+                    message: ``
+                });
+            }
+        )
+        .then(contacts => {
             res.render("course/course-signin", {
                 title: "Sign in to the course",
-                course
+                course: currentCourse,
+                contacts: contacts
             });
         })
         .catch(err => {
