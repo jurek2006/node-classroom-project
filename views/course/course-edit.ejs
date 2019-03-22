@@ -26,9 +26,10 @@
         <a href="<%= course.id%>/delete">Delete course</a>
         <a href="<%= course.id%>">Cancel</a>
         <% } else if(course && !editMode) { %>
-        <!-- course's detail view -->
-        <a href="?edit=true">Edit</a>
-        <a href="/course/list">Back to courses list</a>
+            <!-- course's detail view -->
+            <a href="?edit=true">Edit</a>
+            <a href="/course/list">Back to courses list</a>
+            <a href="<%= course.id%>/signIn">Sign in to the course</a>
         <% } else { %>
         <!-- adding new course -->
         <button type="submit">Save course</button>
@@ -38,6 +39,16 @@
     
         <%- course ? `<input type="hidden" name="id" value="${course.id}" >` :""%>
     </form>
+
+    <% if(course &&  !editMode) { %>
+        <% if(course.signedIn && course.signedIn.length > 0) { %>
+            <% for(const contact of course.signedIn){ %>
+                <li><%= contact.id %></li>
+            <% } %>
+        <% } else {%>
+            <p>No one signed to the course</p>
+        <% } %>
+    <% } %>
 
 <%- include('../includes/html-end.ejs') %>
     

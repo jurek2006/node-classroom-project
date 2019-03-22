@@ -24,6 +24,8 @@ router.get("/course/:id", courseController.getCoursetEdit);
 router.get("/course/:id/delete", courseController.getCourseDelete); //confirm deletion
 router.post("/course/:id/delete", courseController.postCourseDelete); //delete course
 
+router.get("/course/:id/signIn", courseController.getSignIn); // show view with contacts signed in to the course
+
 router.get("/", (req, res, next) => {
     res.render("index", { title: "Index" });
 });

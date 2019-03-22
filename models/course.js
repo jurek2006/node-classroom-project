@@ -3,9 +3,10 @@ const { readJsonFile, saveJsonFile } = require("../utils/fileSystemUtils");
 const config = require("../config/config");
 
 module.exports = class Course {
-    constructor(id, courseName, lastName) {
+    constructor(id, courseName, signedIn) {
         this.id = id;
         this.courseName = courseName;
+        this.signedIn = signedIn;
     }
 
     save() {

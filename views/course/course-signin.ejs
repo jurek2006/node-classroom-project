@@ -1,0 +1,19 @@
+<%- include('../includes/html-head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../includes/navbar.ejs') %>
+    <h1><%= title %></h1>
+
+        <% if(course.signedIn && course.signedIn.length > 0) {%>
+        <ul>
+            <% for(const contact of course.signedIn) { %>
+            <li><%= contact.id %></li>
+            <% } %>
+        </ul>
+        <% } else { %>
+        <p>There are no signed in yet.</p>
+        <% } %>
+
+    <%- include('../includes/html-end.ejs') %>

@@ -104,3 +104,22 @@ exports.postCourseDelete = (req, res, next) => {
             });
         });
 };
+
+exports.getSignIn = (req, res, next) => {
+    const id = req.params.id;
+    Course.getById(id)
+        .then(course => {
+            console.log(course);
+            res.render("course/course-signin", {
+                title: "Sign in to the course",
+                course
+            });
+        })
+        .catch(err => {
+            res.render("error", {
+                title: "Can't find course",
+                error: err,
+                message: ``
+            });
+        });
+};
