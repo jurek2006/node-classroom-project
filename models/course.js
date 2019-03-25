@@ -42,15 +42,34 @@ module.exports = class Course {
             });
     }
 
+    signIn(contactToSignIn) {
+        const courseToSignContact = this;
+        if (!courseToSignContact.signedIn) {
+            courseToSignContact.signedIn = [contactToSignIn];
+        } else {
+            courseToSignContact.signedIn = [
+                ...courseToSignContact.signedIn,
+                contactToSignIn
+            ];
+        }
+    }
+
     static getCourses() {
-        // gets all courses, returns promise which resolves to an array of course objects
+        // gets all courses, returns promise which resolves to an array of Course objects
         // if error in reading json resolves to empty array
         return readJsonFile(
             config.coursesFile.filename,
             config.coursesFile.path
         )
             .then(data => {
-                return data;
+                // convert data red from json to array of Course objects
+                return data.map(course => {
+                    return new Course(
+                        course.id,
+                        course.courseName,
+                        course.signedIn
+                    );
+                });
             })
             .catch(err => {
                 console.log(err);

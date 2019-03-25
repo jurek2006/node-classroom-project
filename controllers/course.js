@@ -138,3 +138,24 @@ exports.getSignIn = (req, res, next) => {
             });
         });
 };
+
+exports.postSignIn = (req, res, next) => {
+    const courseId = req.params.id;
+    const contactId = req.params.contactId;
+    Course.getById(courseId)
+        .then(foundCourse => {
+            foundCourse.signIn(contactId);
+            return foundCourse.save();
+        })
+        .then(updatedCourse => {
+            res.redirect(`/course/${courseId}/signIn`);
+        })
+        .catch(err => {
+            console.log(`Can't signIn to the course with id ${courseId}`);
+            res.render("error", {
+                title: `Can't signIn to the course with id ${courseId}`,
+                error: err,
+                message: ``
+            });
+        });
+};

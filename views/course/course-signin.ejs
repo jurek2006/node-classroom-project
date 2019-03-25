@@ -10,7 +10,7 @@
         <% if(course.signedIn && course.signedIn.length > 0) {%>
         <ul>
             <% for(const contact of course.signedIn) { %>
-            <li><%= contact.id %></li>
+            <li><%= contact %></li>
             <% } %>
         </ul>
         <% } else { %>
@@ -22,7 +22,7 @@
         <ul>
             <% for(let contact of contacts) { %>
             <li>
-                <a href="/contact/<%= contact.id %>">
+                <a href="/course/<%= course.id %>/signIn/<%= contact.id %>">
                     <%= contact.firstName %> <%= contact.lastName %></a>
             </li>
             <% } %>
