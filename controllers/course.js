@@ -144,7 +144,7 @@ exports.postSignIn = (req, res, next) => {
     const contactId = req.params.contactId;
     Course.getById(courseId)
         .then(foundCourse => {
-            foundCourse.signIn(contactId);
+            foundCourse.signInContact(contactId);
             return foundCourse.save();
         })
         .then(updatedCourse => {

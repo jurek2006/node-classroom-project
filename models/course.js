@@ -42,15 +42,30 @@ module.exports = class Course {
             });
     }
 
-    signIn(contactToSignIn) {
+    signInContact(contactToSignInId) {
         const courseToSignContact = this;
+
         if (!courseToSignContact.signedIn) {
-            courseToSignContact.signedIn = [contactToSignIn];
+            // if there's no property signedIn for contact adds with contact in array
+            courseToSignContact.signedIn = [contactToSignInId];
         } else {
-            courseToSignContact.signedIn = [
-                ...courseToSignContact.signedIn,
-                contactToSignIn
-            ];
+            // check if contac is not already signed in to the course
+            if (
+                !courseToSignContact.signedIn.find(
+                    contactId => contactId == contactToSignInId
+                )
+            ) {
+                // if contact has not been asigned to the course befor - assign it
+                courseToSignContact.signedIn = [
+                    ...courseToSignContact.signedIn,
+                    contactToSignInId
+                ];
+            } else {
+                console.log(
+                    `Contact already signedIn to the course. Can't do it again`
+                );
+                // NEEDED - add some visual infromation for user
+            }
         }
     }
 
