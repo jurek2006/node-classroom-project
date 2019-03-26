@@ -43,7 +43,11 @@
     <% if(course &&  !editMode) { %>
         <% if(course.signedIn && course.signedIn.length > 0) { %>
             <% for(const contact of course.signedIn){ %>
-                <li><%= contact %></li>
+                <% if(contact.notFound) { %>
+                    <li>contact <%= contact.id %> not found</li>
+                    <% } else { %>
+                    <li><%= contact.firstName %> <%= contact.lastName %></li>
+                <% } %>
             <% } %>
         <% } else {%>
             <p>No one signed to the course</p>

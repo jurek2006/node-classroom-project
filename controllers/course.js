@@ -49,25 +49,15 @@ exports.getCoursetEdit = (req, res, next) => {
     Course.getById(id)
         .then(course => {
             if (course) {
-                console.log("course ", course);
-
-                // TEMP - DELETE
-                // check if course has anyone signed in
-                // if (course.signedIn && course.signedIn.length > 0) {
-                //     // contacts' data have to be brought here
-                //     // NEEDED change contact id to the real contact
-                //     return { ...course, signedIn: ["dupa", "dupa"] };
-                // } else {
-                //     // no one signed in to the course
-                //     return course;
-                // }
+                // if course found - it consists contacts in signedIn property - but only contacts' ids
+                // use course.updateSignedContacts() to update property with contacts real objects or with 'contact id not found' object
                 return course.updateSignedContacts();
             } else {
                 throw new Error(`Not found course with id ${id}`);
             }
         })
         .then(course => {
-            console.log("course changed", course);
+            // here we got course with updated contacts object in course.signIn property
             res.render("course/course-edit", {
                 title: editMode ? "Edit course" : "Course details",
                 course,

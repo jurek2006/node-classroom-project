@@ -75,16 +75,39 @@ module.exports = class Course {
         // needed for showing to user
         const course = this;
         if (course.signedIn && course.signInContact.length > 0) {
-            const promises = course.signedIn.map(contactId => {
-                return Contact.getById(contactId);
-            });
+            // wrap getting contacts data in one promise
+            // - resolves when promises for each contact are resolved and then construct updated course object
 
-            Promise.all(promises).then(signedInContacts => {
-                console.log(signedInContacts);
-            });
+            return new Promise((resolve, reject) => {
+                const promises = course.signedIn.map(contactId => {
+                    // wrap Contact.getById in new promise as Contact.getById resolves to undefined when it can't find user
+                    // and we want here to return object with id and notFound: true for unfound users (needed to show in view)
+                    return new Promise((resolve, reject) => {
+                        Contact.getById(contactId).then(contact => {
+                            if (contact) {
+                                // if contact with given id found
+                                resolve(contact);
+                            } else {
+                                // if contact with given id NOT found
+                                resolve({
+                                    id: contactId,
+                                    notFound: true
+                                });
+                            }
+                        });
+                    });
+                });
 
-            // return { ...course, signedIn: promises };
+                Promise.all(promises).then(signedInContacts => {
+                    // resolve updated course object
+                    resolve({
+                        ...course,
+                        signedIn: signedInContacts
+                    });
+                });
+            });
         }
+        // if no one signed to the course just return course object
         return course;
     }
 
