@@ -1,6 +1,7 @@
 const uuidv4 = require("uuid/v4");
 const { readJsonFile, saveJsonFile } = require("../utils/fileSystemUtils");
 const config = require("../config/config");
+const Contact = require("./contact");
 
 module.exports = class Course {
     constructor(id, courseName, signedIn) {
@@ -69,6 +70,24 @@ module.exports = class Course {
         }
     }
 
+    updateSignedContacts() {
+        // changes each signedIn contact from id to real contact
+        // needed for showing to user
+        const course = this;
+        if (course.signedIn && course.signInContact.length > 0) {
+            const promises = course.signedIn.map(contactId => {
+                return Contact.getById(contactId);
+            });
+
+            Promise.all(promises).then(signedInContacts => {
+                console.log(signedInContacts);
+            });
+
+            // return { ...course, signedIn: promises };
+        }
+        return course;
+    }
+
     static getCourses() {
         // gets all courses, returns promise which resolves to an array of Course objects
         // if error in reading json resolves to empty array
@@ -82,7 +101,7 @@ module.exports = class Course {
                     return new Course(
                         course.id,
                         course.courseName,
-                        course.signedIn
+                        course.signedIn || [] //if property is undefined set empty array
                     );
                 });
             })

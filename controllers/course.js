@@ -49,14 +49,30 @@ exports.getCoursetEdit = (req, res, next) => {
     Course.getById(id)
         .then(course => {
             if (course) {
-                res.render("course/course-edit", {
-                    title: editMode ? "Edit course" : "Course details",
-                    course,
-                    editMode
-                });
+                console.log("course ", course);
+
+                // TEMP - DELETE
+                // check if course has anyone signed in
+                // if (course.signedIn && course.signedIn.length > 0) {
+                //     // contacts' data have to be brought here
+                //     // NEEDED change contact id to the real contact
+                //     return { ...course, signedIn: ["dupa", "dupa"] };
+                // } else {
+                //     // no one signed in to the course
+                //     return course;
+                // }
+                return course.updateSignedContacts();
             } else {
                 throw new Error(`Not found course with id ${id}`);
             }
+        })
+        .then(course => {
+            console.log("course changed", course);
+            res.render("course/course-edit", {
+                title: editMode ? "Edit course" : "Course details",
+                course,
+                editMode
+            });
         })
         .catch(err => {
             res.render("error", {
