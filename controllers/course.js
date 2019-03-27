@@ -116,20 +116,9 @@ exports.getSignIn = (req, res, next) => {
     const id = req.params.id;
     let currentCourse;
     Course.getById(id)
-        .then(
-            course => {
-                // if course found - it consists contacts in signedIn property - but only contacts' ids
-                // use course.updateSignedContacts() to update property with contacts real objects or with 'contact id not found' object
-                return course.updateSignedContacts();
-            },
-            err => {
-                res.render("error", {
-                    title: "Can't find course",
-                    error: err,
-                    message: ``
-                });
-            }
-        )
+        .then(course => {
+            return course.updateSignedContacts();
+        })
         .then(course => {
             // here we got course with updated contacts object in course.signIn property
             currentCourse = course;
@@ -144,7 +133,7 @@ exports.getSignIn = (req, res, next) => {
         })
         .catch(err => {
             res.render("error", {
-                title: "Can't find course",
+                title: "Can't sign in contacts to course",
                 error: err,
                 message: ``
             });

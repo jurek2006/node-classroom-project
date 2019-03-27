@@ -147,7 +147,11 @@ module.exports = class Course {
         // returns promise which resolves to Course data if succeed and to undefined if fail
         return Course.getCourses()
             .then(courses => {
-                return courses.find(course => course.id === id);
+                const foundCourse = courses.find(course => course.id === id);
+                if (!foundCourse) {
+                    throw new Error(`Course with id ${id} does not exist`);
+                }
+                return foundCourse;
             })
             .catch(err => {
                 console.log(err);
