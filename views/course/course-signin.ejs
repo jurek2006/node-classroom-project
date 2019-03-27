@@ -10,7 +10,7 @@
         <% if(course.signedIn && course.signedIn.length > 0) {%>
         <ul>
             <% for(const contact of course.signedIn) { %>
-            <li><%= contact %></li>
+            <li><%= contact.firstName %> <%= contact.lastName %></li>
             <% } %>
         </ul>
         <% } else { %>

@@ -118,8 +118,9 @@ exports.getSignIn = (req, res, next) => {
     Course.getById(id)
         .then(
             course => {
-                currentCourse = course;
-                return Contact.getContacts();
+                // if course found - it consists contacts in signedIn property - but only contacts' ids
+                // use course.updateSignedContacts() to update property with contacts real objects or with 'contact id not found' object
+                return course.updateSignedContacts();
             },
             err => {
                 res.render("error", {
@@ -129,7 +130,13 @@ exports.getSignIn = (req, res, next) => {
                 });
             }
         )
+        .then(course => {
+            // here we got course with updated contacts object in course.signIn property
+            currentCourse = course;
+            return Contact.getContacts();
+        })
         .then(contacts => {
+            console.log("currentCourse", currentCourse);
             res.render("course/course-signin", {
                 title: "Sign in to the course",
                 course: currentCourse,
