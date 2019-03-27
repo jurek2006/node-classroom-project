@@ -136,7 +136,6 @@ exports.getSignIn = (req, res, next) => {
             return Contact.getContacts();
         })
         .then(contacts => {
-            console.log("currentCourse", currentCourse);
             res.render("course/course-signin", {
                 title: "Sign in to the course",
                 course: currentCourse,

@@ -41,17 +41,8 @@
     </form>
 
     <% if(course &&  !editMode) { %>
-        <% if(course.signedIn && course.signedIn.length > 0) { %>
-            <% for(const contact of course.signedIn){ %>
-                <% if(contact.notFound) { %>
-                    <li>contact <%= contact.id %> not found</li>
-                    <% } else { %>
-                    <li><a href="/contact/<%= contact.id %>"><%= contact.firstName %> <%= contact.lastName %></a> </li>
-                <% } %>
-            <% } %>
-        <% } else {%>
-            <p>No one signed to the course</p>
-        <% } %>
+        <!-- showing list of signed in contact -->
+        <%- include('../includes/course/signedId-list.ejs') %>
     <% } %>
 
 

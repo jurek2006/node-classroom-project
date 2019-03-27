@@ -7,15 +7,9 @@
     <h1><%= title %></h1>
 
         <h2>Signed in:</h2>
-        <% if(course.signedIn && course.signedIn.length > 0) {%>
-        <ul>
-            <% for(const contact of course.signedIn) { %>
-            <li><%= contact.firstName %> <%= contact.lastName %></li>
-            <% } %>
-        </ul>
-        <% } else { %>
-        <p>There are no signed in yet.</p>
-        <% } %>
+
+            <!-- showing list of signed in contact -->
+            <%- include('../includes/course/signedId-list.ejs') %>
 
         <h2>Sign in:</h2>
         <% if(contacts.length > 0) {%>

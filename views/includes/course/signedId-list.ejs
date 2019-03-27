@@ -1,0 +1,17 @@
+<!-- partial to show course signedIn contacts -->
+<!-- prettier-ignore -->
+<% if(course.signedIn && course.signedIn.length > 0) { %>
+<ul>
+    <% for(const contact of course.signedIn){ %> <% if(contact.notFound) { %>
+    <li>contact <%= contact.id %> not found</li>
+    <% } else { %>
+    <li>
+        <a href="/contact/<%= contact.id %>"
+            ><%= contact.firstName %> <%= contact.lastName %></a
+        >
+    </li>
+    <% } %> <% } %>
+</ul>
+<% } else {%>
+<p>No one signed to the course</p>
+<% } %>
