@@ -3,7 +3,10 @@
 <% if(course.signedIn && course.signedIn.length > 0) { %>
 <ul>
     <% for(const contact of course.signedIn){ %> <% if(contact.notFound) { %>
-    <li>contact <%= contact.id %> not found</li>
+    <li>
+        contact <%= contact.id %> not found
+        <a href="/course/<%= course.id %>/disenroll/<%= contact.id %>">clean</a>
+    </li>
     <% } else { %>
     <li>
         <%= contact.firstName %> <%= contact.lastName %>
@@ -18,5 +21,3 @@
 <% } else {%>
 <p>No one signed to the course</p>
 <% } %>
-
-<!-- http://localhost:3000/course/64bfec23-86b0-4206-9d6c-78d482f6353e/signIn/dc7c0401-8f77-4080-a063-67f34325c939 -->
