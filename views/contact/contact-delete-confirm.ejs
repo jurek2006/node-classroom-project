@@ -6,7 +6,7 @@
     <%- include('../includes/navbar.ejs') %>
     <h1><%= title %></h1>
 
-    <p>Do you really want to delete contact <span style="font-weight: bold"> <%= contact.firstName %> <%= contact.lastName %> </span>?</p>
+    <p>Do you really want to delete contact <span class="highlighted"> <%= contact.firstName %> <%= contact.lastName %> </span>?</p>
 
     <form action="" method="POST">
         <button type="submit">Yes, delete contact</button>

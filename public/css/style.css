@@ -5,3 +5,7 @@ a.active {
 span.disabled {
     color: #999999;
 }
+
+span.highlighted {
+    font-weight: bold;
+}
