@@ -112,7 +112,7 @@ exports.postCourseDelete = (req, res, next) => {
         });
 };
 
-exports.getSignIn = (req, res, next) => {
+exports.getSignInView = (req, res, next) => {
     const id = req.params.id;
     let currentCourse;
     Course.getById(id)
@@ -151,7 +151,7 @@ exports.getSignIn = (req, res, next) => {
         });
 };
 
-exports.postSignIn = (req, res, next) => {
+exports.getSignIn = (req, res, next) => {
     const courseId = req.params.id;
     const contactId = req.params.contactId;
     Course.getById(courseId)
