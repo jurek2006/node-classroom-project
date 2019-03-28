@@ -16,8 +16,16 @@
         <ul>
             <% for(let contact of contacts) { %>
             <li>
+                <% if(!contact.alreadySigned) {%>
+                <!-- if contact not already signed to the course - print link to sign in the contact -->
                 <a href="/course/<%= course.id %>/signIn/<%= contact.id %>">
-                    <%= contact.firstName %> <%= contact.lastName %></a>
+                    <%= contact.firstName %> <%= contact.lastName %> %></a>
+                <% } else {%>
+                <!-- if contact already signed in - just print contact name without link -->
+                    <span class="<%= contact.alreadySigned ? 'disabled' : ''  %>">
+                        <%= contact.firstName %> <%= contact.lastName %> <%= contact.alreadySigned ? ' (signed)' : "" %>
+                    </span>
+                <% } %>
             </li>
             <% } %>
         </ul>

@@ -125,6 +125,17 @@ exports.getSignIn = (req, res, next) => {
             return Contact.getContacts();
         })
         .then(contacts => {
+            // filter contacts to disable already signed in
+            // if contacs is signed in to the course gets property alreadySigned
+            currentCourse.signedIn.forEach(signedContact => {
+                let foundContact = contacts.find(
+                    contact => contact.id === signedContact.id
+                );
+                if (foundContact) {
+                    foundContact.alreadySigned = true;
+                }
+            });
+
             res.render("course/course-signin", {
                 title: "Sign in to the course",
                 course: currentCourse,
