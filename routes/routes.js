@@ -26,6 +26,7 @@ router.post("/course/:id/delete", courseController.postCourseDelete); //delete c
 
 router.get("/course/:id/signIn", courseController.getSignInView); // show view with contacts signed in to the course and possible to sign in
 router.get("/course/:id/signIn/:contactId", courseController.getSignIn); // sign contact with contactId to the course with id
+router.get("/course/:id/disenroll/:contactId", courseController.getDisenroll); // disenroll contact with contactId from the course with id
 
 router.get("/", (req, res, next) => {
     res.render("index", { title: "Index" });

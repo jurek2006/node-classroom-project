@@ -70,6 +70,37 @@ module.exports = class Course {
         }
     }
 
+    disenrollContact(contactToDisenrollId) {
+        const course = this;
+
+        if (
+            course.signedIn &&
+            course.signedIn.find(
+                contactId => contactId === contactToDisenrollId
+            )
+        ) {
+            // if contact enrolled to the course return course with removed contact from array in course's signIn property
+
+            const newSignedIn = course.signedIn.filter(
+                contactId => contactId !== contactToDisenrollId
+            );
+            return new Course(
+                course.id,
+                course.courseName,
+                course.signedIn.filter(
+                    contactId => contactId !== contactToDisenrollId
+                )
+            );
+        }
+
+        // if contact not enrolled - throw error
+        throw new Error(
+            `Contact with id ${contactToDisenrollId} is not enrolled to the course with id ${
+                course.id
+            }`
+        );
+    }
+
     updateSignedContacts() {
         // changes each signedIn contact from id to real contact
         // needed for showing to user

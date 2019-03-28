@@ -6,12 +6,17 @@
     <li>contact <%= contact.id %> not found</li>
     <% } else { %>
     <li>
-        <a href="/contact/<%= contact.id %>"
-            ><%= contact.firstName %> <%= contact.lastName %></a
-        >
+        <%= contact.firstName %> <%= contact.lastName %>
+        <a href="/contact/<%= contact.id %>">detail </a>
+
+        <a href="/course/<%= course.id %>/disenroll/<%= contact.id %>"
+            >disenroll
+        </a>
     </li>
     <% } %> <% } %>
 </ul>
 <% } else {%>
 <p>No one signed to the course</p>
 <% } %>
+
+<!-- http://localhost:3000/course/64bfec23-86b0-4206-9d6c-78d482f6353e/signIn/dc7c0401-8f77-4080-a063-67f34325c939 -->
