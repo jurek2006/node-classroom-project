@@ -10,11 +10,11 @@
     <% } else { %>
     <li>
         <%= contact.firstName %> <%= contact.lastName %>
-        <a href="/contact/<%= contact.id %>">detail </a>
+        <a href="/contact/<%= contact.id %>">contact's detail</a>
 
         <a href="/course/<%= course.id %>/disenroll/<%= contact.id %>"
-            >disenroll
-        </a>
+            >disenroll</a
+        >
     </li>
     <% } %> <% } %>
 </ul>

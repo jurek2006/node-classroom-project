@@ -1,0 +1,30 @@
+<%- include('../includes/html-head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../includes/navbar.ejs') %>
+    <h1><%= title %></h1>
+
+    <p>Can not delete contact <span class="highlighted"> <%= contact.firstName %> <%= contact.lastName %> </span> because is enrolled to <span class="highlighted"><%= coursesEnrolled.length %> </span> course/s</p>
+    <p>Before deletion go to <a href="/contact/<%= contact.id %>">contact edit</a> and disenroll from all contact's courses.</p>
+
+    <% if (coursesEnrolled && coursesEnrolled.length > 0){ %>
+    <!-- show list of contact's courses -->
+    <h2>Contact enrolled to courses:</h2>
+    <ul>
+        <% for(let course of coursesEnrolled) { %>
+        <li>
+            <a href="/course/<%= course.id %>">
+                <%= course.courseName %>
+            </a>
+        </li>
+        <% } %>
+    </ul>
+    <% } else { %>
+        <!-- shouln't happen -->
+    <h2>Error</h2>
+    <p>For some reason it is not possible to show enrolled courses.</p>
+    <% }%>
+
+    <%- include('../includes/html-end.ejs') %>

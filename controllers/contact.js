@@ -71,17 +71,32 @@ exports.getContactEdit = (req, res, next) => {
 };
 
 exports.getContactDelete = (req, res, next) => {
-    // ask about confirmation od contact deletion
+    // ask about confirmation of contact deletion when the instance of Contact doesn't have any course enrolled
+    // iform about prohibition of contact deletion whef for the contact there is at least one course attached
     const id = req.params.id;
     Contact.getById(id)
         .then(contact => {
             if (contact) {
-                res.render("contact/contact-delete-confirm", {
-                    title: "Confirm delete contact",
-                    contact
-                });
+                currentContact = contact;
+                return Course.getUserCourses(currentContact.id);
             } else {
                 throw new Error(`Not found contact with id ${id}.`);
+            }
+        })
+        .then(coursesEnrolled => {
+            if (coursesEnrolled && coursesEnrolled.length > 0) {
+                // contact is enrolled to some courses
+                res.render("contact/contact-delete-prohibite", {
+                    title: "Can not delete contact",
+                    contact: currentContact,
+                    coursesEnrolled
+                });
+            } else {
+                // contact is not enrolled to any course
+                res.render("contact/contact-delete-confirm", {
+                    title: "Confirm delete contact",
+                    contact: currentContact
+                });
             }
         })
         .catch(err => {
