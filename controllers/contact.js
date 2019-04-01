@@ -1,4 +1,5 @@
 const Contact = require("../models/contact");
+const Course = require("../models/course");
 
 exports.getContacts = (req, res, next) => {
     Contact.getContacts().then(contacts => {
@@ -42,17 +43,23 @@ exports.postSaveContact = (req, res, next) => {
 exports.getContactEdit = (req, res, next) => {
     const id = req.params.id;
     const editMode = req.query.edit;
+    let currentContact;
     Contact.getById(id)
         .then(contact => {
             if (contact) {
-                res.render("contact/contact-edit", {
-                    title: editMode ? "Edit contact" : "Contact details",
-                    contact,
-                    editMode
-                });
+                currentContact = contact;
+                return Course.getUserCourses(currentContact.id);
             } else {
                 throw new Error(`Not found contact with id ${id}`);
             }
+        })
+        .then(coursesEnrolled => {
+            res.render("contact/contact-edit", {
+                title: editMode ? "Edit contact" : "Contact details",
+                contact: currentContact,
+                editMode,
+                coursesEnrolled
+            });
         })
         .catch(err => {
             res.render("error", {

@@ -203,4 +203,19 @@ module.exports = class Course {
             }
         });
     }
+
+    static getUserCourses(userId) {
+        // returns promise which resolves to array of courses to which contact is enrolled
+        return Course.getCourses()
+            .then(courses => {
+                const foundCourses = courses.filter(course => {
+                    return course.signedIn.includes(userId);
+                });
+                return foundCourses;
+            })
+            .catch(err => {
+                console.log(err);
+                throw err;
+            });
+    }
 };

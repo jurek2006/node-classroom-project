@@ -31,6 +31,21 @@
                 <!-- contact's detail view -->
                 <a href="?edit=true">Edit</a>
                 <a href="/contact/list">Back to contacts list</a>
+                <% if (coursesEnrolled && coursesEnrolled.length > 0){ %>
+                    <!-- if contact enrolled to any course - show list of contact's courses -->
+                    <h2>Contact enrolled to courses:</h2>
+                    <ul>
+                        <% for(let course of coursesEnrolled) { %>
+                        <li>
+                            <a href="/course/<%= course.id %>">
+                                <%= course.courseName %>
+                            </a>
+                        </li>
+                        <% } %>
+                    </ul>
+                <% } else { %>
+                    <h2>Not enrolled to any course yet.</h2>
+                <% }%>
         <% } else { %>
             <!-- adding new contact -->
             <button type="submit">Save contact</button>
