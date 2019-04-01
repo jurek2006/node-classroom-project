@@ -47,14 +47,21 @@ module.exports = class Contact {
     }
 
     static getContacts() {
-        // gets all contacts, returns promise which resolves to an array of contact objects
+        // gets all contacts, returns promise which resolves to an array of Contact objects
         // if error in reading json resolves to empty array
         return readJsonFile(
             config.contactsFile.filename,
             config.contactsFile.path
         )
             .then(data => {
-                return data;
+                // convert data red from json to array of Course objects
+                return data.map(contact => {
+                    return new Contact(
+                        contact.id,
+                        contact.firstName,
+                        contact.lastName
+                    );
+                });
             })
             .catch(err => {
                 console.log(err);
