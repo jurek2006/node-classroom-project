@@ -37,9 +37,9 @@
                     <ul>
                         <% for(let course of coursesEnrolled) { %>
                         <li>
-                            <a href="/course/<%= course.id %>">
-                                <%= course.courseName %>
-                            </a>
+                            <a href="/course/<%= course.id %>"><%= course.courseName %></a> 
+                            <a href="/contact/<%= course.id %>/disenroll/<%= contact.id %>">disenroll</a>
+                            <!-- <a href="/course/<%= course.id %>/disenroll/<%= contact.id %>">disenroll</a> -->
                         </li>
                         <% } %>
                     </ul>
