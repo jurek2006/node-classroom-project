@@ -2,21 +2,26 @@
 <!-- prettier-ignore -->
 <% if(course.signedIn && course.signedIn.length > 0) { %>
 <ul>
-    <% for(const contact of course.signedIn){ %> <% if(contact.notFound) { %>
+    <% for(const contact of course.signedIn){ %>
     <li>
-        contact <%= contact.id %> not found
-        <a href="/course/<%= course.id %>/disenroll/<%= contact.id %>">clean</a>
-    </li>
-    <% } else { %>
-    <li>
-        <%= contact.firstName %> <%= contact.lastName %>
+        <!-- if contact not found show its id and change button to 'clean' to disenroll it from the course -->
+        <% if(contact.notFound) { %> not existing contact with id <%= contact.id
+        %> <% } else { %> <%= contact.firstName %><%= contact.lastName %>
         <a href="/contact/<%= contact.id %>">contact's detail</a>
+        <% } %>
 
-        <a href="/course/<%= course.id %>/disenroll/<%= contact.id %>"
-            >disenroll</a
-        >
+        <form action="/course/disenroll/ %>" method="POST">
+            <input type="hidden" name="courseId" value="<%= course.id %>" />
+            <input type="hidden" name="contactId" value="<%= contact.id %>" />
+            <input
+                type="hidden"
+                name="redirectBackPath"
+                value="<%= locals.path %>"
+            />
+            <button><%= (contact.notFound) ? "clean" : "disenroll" %></button>
+        </form>
     </li>
-    <% } %> <% } %>
+    <% } %>
 </ul>
 <% } else {%>
 <p>No one signed to the course</p>

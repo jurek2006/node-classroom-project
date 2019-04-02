@@ -172,16 +172,15 @@ exports.getSignIn = (req, res, next) => {
         });
 };
 
-exports.getDisenroll = (req, res, next) => {
-    const courseId = req.params.id;
-    const contactId = req.params.contactId;
+exports.postDisenroll = (req, res, next) => {
+    const { courseId, contactId, redirectBackPath } = req.body;
     Course.getById(courseId)
         .then(foundCourse => {
             const courseToSave = foundCourse.disenrollContact(contactId);
             return courseToSave.save();
         })
         .then(updatedCourse => {
-            res.redirect(`/course/${courseId}/signIn`);
+            res.redirect(redirectBackPath); //redirects back to given path
         })
         .catch(err => {
             console.log(

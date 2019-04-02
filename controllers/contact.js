@@ -123,27 +123,3 @@ exports.postContactDelete = (req, res, next) => {
             });
         });
 };
-
-// TEMP
-exports.getDisenroll = (req, res, next) => {
-    const courseId = req.params.id;
-    const contactId = req.params.contactId;
-    Course.getById(courseId)
-        .then(foundCourse => {
-            const courseToSave = foundCourse.disenrollContact(contactId);
-            return courseToSave.save();
-        })
-        .then(updatedCourse => {
-            res.redirect(`/contact/${contactId}`);
-        })
-        .catch(err => {
-            console.log(
-                `Can't disenroll contact with id ${contactId} from the course with id ${courseId}`
-            );
-            res.render("error", {
-                title: `Can't disenroll contact with id ${contactId} from the course with id ${courseId}`,
-                error: err,
-                message: ``
-            });
-        });
-};

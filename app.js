@@ -10,11 +10,6 @@ const routes = require("./routes/routes");
 
 //static serve resources from public folder
 app.use(express.static(path.resolve("public")));
-app.use((req, res, next) => {
-    // pass url of current site to ejs views by app.locals (can be accessed in ejs as locals.path)
-    app.locals.path = req.originalUrl;
-    next();
-});
 app.use(bodyParser.urlencoded({ extended: false }));
 
 /* ROUTING */

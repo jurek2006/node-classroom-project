@@ -4,6 +4,11 @@ const routesContact = require("./routes-contact");
 const routesCourse = require("./routes-course");
 
 const routes = express();
+routes.use((req, res, next) => {
+    // pass url of current site to ejs views by app.locals (can be accessed in ejs as locals.path)
+    routes.locals.path = req.originalUrl;
+    next();
+});
 routes.use("/contact", routesContact);
 routes.use("/course", routesCourse);
 

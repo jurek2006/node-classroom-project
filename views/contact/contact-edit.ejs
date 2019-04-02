@@ -31,21 +31,7 @@
                 <!-- contact's detail view -->
                 <a href="?edit=true">Edit</a>
                 <a href="/contact/list">Back to contacts list</a>
-                <% if (coursesEnrolled && coursesEnrolled.length > 0){ %>
-                    <!-- if contact enrolled to any course - show list of contact's courses -->
-                    <h2>Contact enrolled to courses:</h2>
-                    <ul>
-                        <% for(let course of coursesEnrolled) { %>
-                        <li>
-                            <a href="/course/<%= course.id %>"><%= course.courseName %></a> 
-                            <a href="/contact/<%= course.id %>/disenroll/<%= contact.id %>">disenroll</a>
-                            <!-- <a href="/course/<%= course.id %>/disenroll/<%= contact.id %>">disenroll</a> -->
-                        </li>
-                        <% } %>
-                    </ul>
-                <% } else { %>
-                    <h2>Not enrolled to any course yet.</h2>
-                <% }%>
+
         <% } else { %>
             <!-- adding new contact -->
             <button type="submit">Save contact</button>
@@ -55,6 +41,29 @@
         
         <%- contact ? `<input type="hidden" name="id" value="${contact.id}" >` :""%>
     </form>
+
+    <% if (contact && coursesEnrolled && coursesEnrolled.length > 0){ %>
+    <!-- if contact enrolled to any course - show list of contact's courses -->
+    <!-- has to be outside form above -->
+    <h2>Contact enrolled to courses:</h2>
+    <ul>
+        <% for(let course of coursesEnrolled) { %>
+        <li>
+            <a href="/course/<%= course.id %>"><%= course.courseName %></a>
+    
+            <!-- form to disenroll contact from a course using post -->
+            <form action="/course/disenroll/ %>" method="POST">
+                <input type="hidden" name="courseId" value="<%= course.id %>" />
+                <input type="hidden" name="contactId" value="<%= contact.id %>" />
+                <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
+                <button>disenroll</button>
+            </form>
+        </li>
+        <% } %>
+    </ul>
+    <% } else { %>
+    <h2>Not enrolled to any course yet.</h2>
+    <% }%>
 
 <%- include('../includes/html-end.ejs') %>
     
