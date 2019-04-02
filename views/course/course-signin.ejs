@@ -6,12 +6,12 @@
     <%- include('../includes/navbar.ejs') %>
     <h1><%= title %></h1>
 
-        <h2>Signed in:</h2>
+        <h2>Enrolled:</h2>
 
             <!-- showing list of signed in contact -->
             <%- include('../includes/course/signedId-list.ejs') %>
 
-        <h2>Sign in:</h2>
+        <h2>Enroll:</h2>
         <% if(contacts.length > 0) {%>
         <ul>
             <% for(let contact of contacts) { %>

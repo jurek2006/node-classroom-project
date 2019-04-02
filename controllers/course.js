@@ -137,7 +137,7 @@ exports.getSignInView = (req, res, next) => {
             });
 
             res.render("course/course-signin", {
-                title: "Sign in to the course",
+                title: "Manage enrolled in the course",
                 course: currentCourse,
                 contacts: contacts
             });

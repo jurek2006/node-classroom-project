@@ -11,7 +11,7 @@ router.post("/save", courseController.postSaveCourse);
 
 router.post("/disenroll/", courseController.postDisenroll); // disenroll contact from course
 
-router.get("/:id", courseController.getCoursetEdit);
+router.get("/:id", courseController.getCoursetEdit); //course detail & edit
 router.get("/:id/delete", courseController.getCourseDelete); //confirm deletion
 router.post("/:id/delete", courseController.postCourseDelete); //delete course
 

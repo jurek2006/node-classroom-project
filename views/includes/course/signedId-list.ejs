@@ -1,6 +1,12 @@
-<!-- partial to show course signedIn contacts -->
+<!-- partial to show list of contacts enrolled to the course -->
+<!-- by default show "disenroll" button but it can be disabled by passing {disabledEnrolling: true} to inlcude-->
+
 <!-- prettier-ignore -->
-<% if(course.signedIn && course.signedIn.length > 0) { %>
+
+<!-- set default value to disabledEnrolling to false -->
+<% try{disabledEnrolling = disabledEnrolling} catch(e){ disabledEnrolling =
+false; } %> <% if(course.signedIn && course.signedIn.length > 0) { %>
+
 <ul>
     <% for(const contact of course.signedIn){ %>
     <li>
@@ -8,8 +14,7 @@
         <% if(contact.notFound) { %> not existing contact with id <%= contact.id
         %> <% } else { %> <%= contact.firstName %><%= contact.lastName %>
         <a href="/contact/<%= contact.id %>">contact's detail</a>
-        <% } %>
-
+        <% } %> <% if(!disabledEnrolling) { %>
         <form action="/course/disenroll/ %>" method="POST">
             <input type="hidden" name="courseId" value="<%= course.id %>" />
             <input type="hidden" name="contactId" value="<%= contact.id %>" />
@@ -20,6 +25,7 @@
             />
             <button><%= (contact.notFound) ? "clean" : "disenroll" %></button>
         </form>
+        <% } %>
     </li>
     <% } %>
 </ul>
