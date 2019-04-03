@@ -12,7 +12,7 @@ false; } %> <% if(course.enrolled && course.enrolled.length > 0) { %>
     <li>
         <!-- if contact not found show its id and change button to 'clean' to disenroll it from the course -->
         <% if(contact.notFound) { %> not existing contact with id <%= contact.id
-        %> <% } else { %> <%= contact.firstName %><%= contact.lastName %>
+        %> <% } else { %> <%= contact.firstName %> <%= contact.lastName %>
         <a href="/contact/<%= contact.id %>">contact's detail</a>
         <% } %> <% if(!disabledEnrolling) { %>
         <form action="/course/disenroll/ %>" method="POST">
