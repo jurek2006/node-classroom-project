@@ -1,3 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand <%= locals.path === '/' ? 'active' : '' %>" href="/"
+        >NodeClassroom</a
+    >
+    <!-- <a href="/" class="<%= locals.path === '/' ? 'active' : '' %>">Index</a> -->
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <!-- <a class="nav-link" href="#">Link</a> -->
+                <a
+                    href="/contact/list"
+                    class="nav-link <%= locals.path === '/contact/list' ? 'active' : '' %>"
+                    >Contacts</a
+                >
+            </li>
+            <li class="nav-item">
+                <!-- <a class="nav-link" href="#">Link</a> -->
+                <a
+                    href="/course/list"
+                    class="nav-link <%= locals.path === '/course/list' ? 'active' : '' %>"
+                    >Courses</a
+                >
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- ------------------------------------------ -->
+
 <ul>
     <li>
         <a href="/" class="<%= locals.path === '/' ? 'active' : '' %>">Index</a>
