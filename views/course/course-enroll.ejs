@@ -1,0 +1,36 @@
+<%- include('../includes/html-head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../includes/navbar.ejs') %>
+    <h1><%= title %></h1>
+
+        <h2>Enrolled:</h2>
+
+            <!-- showing list of enrolled contacts -->
+            <%- include('../includes/course/enrolled-list.ejs') %>
+
+        <h2>Enroll:</h2>
+        <% if(contacts.length > 0) {%>
+        <ul>
+            <% for(let contact of contacts) { %>
+            <li>
+                <% if(!contact.alreadyEnrolled) {%>
+                <!-- if contact not already enrolled in the course - print link to enroll the contact -->
+                <a href="/course/<%= course.id %>/enroll/<%= contact.id %>">
+                    <%= contact.firstName %> <%= contact.lastName %> %></a>
+                <% } else {%>
+                <!-- if contact already enrolled - just print contact name without link -->
+                    <span class="<%= contact.alreadyEnrolled ? 'disabled' : ''  %>">
+                        <%= contact.firstName %> <%= contact.lastName %> <%= contact.alreadyEnrolled ? ' (enrolled)' : "" %>
+                    </span>
+                <% } %>
+            </li>
+            <% } %>
+        </ul>
+        <% } else { %>
+        <p>There are no contacts yet.</p>
+        <% } %>
+
+    <%- include('../includes/html-end.ejs') %>

@@ -15,7 +15,7 @@ router.get("/:id", courseController.getCoursetEdit); //course detail & edit
 router.get("/:id/delete", courseController.getCourseDelete); //confirm deletion
 router.post("/:id/delete", courseController.postCourseDelete); //delete course
 
-router.get("/:id/signIn", courseController.getSignInView); // show view with contacts signed in to the course and possible to sign in
-router.get("/:id/signIn/:contactId", courseController.getSignIn); // sign contact with contactId to the course with id
+router.get("/:id/enroll", courseController.getEnrolledInView); // show view with contacts entolled in the course and possible to enroll
+router.get("/:id/enroll/:contactId", courseController.getEnrolled); // enroll contact with contactId to the course with id
 
 module.exports = router;

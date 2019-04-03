@@ -49,15 +49,15 @@ exports.getCoursetEdit = (req, res, next) => {
     Course.getById(id)
         .then(course => {
             if (course) {
-                // if course found - it consists contacts in signedIn property - but only contacts' ids
-                // use course.updateSignedContacts() to update property with contacts real objects or with 'contact id not found' object
-                return course.updateSignedContacts();
+                // if course found - it consists contacts in enrolled property - but only contacts' ids
+                // use course.updateEnrolledContacts() to update property with contacts real objects or with 'contact id not found' object
+                return course.updateEnrolledContacts();
             } else {
                 throw new Error(`Not found course with id ${id}`);
             }
         })
         .then(course => {
-            // here we got course with updated contacts object in course.signIn property
+            // here we got course with updated contacts object in course.enrolled property
             res.render("course/course-edit", {
                 title: editMode ? "Edit course" : "Course details",
                 course,
@@ -112,31 +112,31 @@ exports.postCourseDelete = (req, res, next) => {
         });
 };
 
-exports.getSignInView = (req, res, next) => {
+exports.getEnrolledInView = (req, res, next) => {
     const id = req.params.id;
     let currentCourse;
     Course.getById(id)
         .then(course => {
-            return course.updateSignedContacts();
+            return course.updateEnrolledContacts();
         })
         .then(course => {
-            // here we got course with updated contacts object in course.signIn property
+            // here we got course with updated contacts object in course.enrolled property
             currentCourse = course;
             return Contact.getContacts();
         })
         .then(contacts => {
-            // filter contacts to disable already signed in
-            // if contacs is signed in to the course gets property alreadySigned
-            currentCourse.signedIn.forEach(signedContact => {
+            // filter contacts to disable already enrolled in
+            // if contacs is enrolled to the course gets property alreadyEnrolled
+            currentCourse.enrolled.forEach(enrolledContact => {
                 let foundContact = contacts.find(
-                    contact => contact.id === signedContact.id
+                    contact => contact.id === enrolledContact.id
                 );
                 if (foundContact) {
-                    foundContact.alreadySigned = true;
+                    foundContact.alreadyEnrolled = true;
                 }
             });
 
-            res.render("course/course-signin", {
+            res.render("course/course-enroll", {
                 title: "Manage enrolled in the course",
                 course: currentCourse,
                 contacts: contacts
@@ -144,28 +144,28 @@ exports.getSignInView = (req, res, next) => {
         })
         .catch(err => {
             res.render("error", {
-                title: "Can't sign in contacts to course",
+                title: "Can't enroll contacts in the course",
                 error: err,
                 message: ``
             });
         });
 };
 
-exports.getSignIn = (req, res, next) => {
+exports.getEnrolled = (req, res, next) => {
     const courseId = req.params.id;
     const contactId = req.params.contactId;
     Course.getById(courseId)
         .then(foundCourse => {
-            foundCourse.signInContact(contactId);
+            foundCourse.enrollContact(contactId);
             return foundCourse.save();
         })
         .then(updatedCourse => {
-            res.redirect(`/course/${courseId}/signIn`);
+            res.redirect(`/course/${courseId}/enroll`);
         })
         .catch(err => {
-            console.log(`Can't signIn to the course with id ${courseId}`);
+            console.log(`Can't enroll in the course with id ${courseId}`);
             res.render("error", {
-                title: `Can't signIn to the course with id ${courseId}`,
+                title: `Can't enroll in the course with id ${courseId}`,
                 error: err,
                 message: ``
             });

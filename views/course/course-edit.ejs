@@ -29,7 +29,7 @@
             <!-- course's detail view -->
             <a href="?edit=true">Edit</a>
             <a href="/course/list">Back to courses list</a>
-            <a href="<%= course.id%>/signIn">Manage enrolled</a>
+            <a href="<%= course.id%>/enroll">Manage enrolled</a>
         <% } else { %>
         <!-- adding new course -->
         <button type="submit">Save course</button>
@@ -41,8 +41,8 @@
     </form>
 
     <% if(course &&  !editMode) { %>
-        <!-- showing list of signed in contact -->
-        <%- include('../includes/course/signedId-list.ejs', {disabledEnrolling: true}) %>
+        <!-- showing list of enrolled contacts -->
+        <%- include('../includes/course/enrolled-list.ejs', {disabledEnrolling: true}) %>
     <% } %>
 
 

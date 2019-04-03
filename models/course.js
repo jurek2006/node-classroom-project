@@ -4,10 +4,10 @@ const config = require("../config/config");
 const Contact = require("./contact");
 
 module.exports = class Course {
-    constructor(id, courseName, signedIn) {
+    constructor(id, courseName, enrolled) {
         this.id = id;
         this.courseName = courseName;
-        this.signedIn = signedIn;
+        this.enrolled = enrolled;
     }
 
     save() {
@@ -15,7 +15,7 @@ module.exports = class Course {
         // otherwise checks if course with given id exists in file and if so updates the course
 
         // if course saved/updated properly returns object with course data
-        // (if course created object contains id which has been assignet to the course)
+        // (if course created object contains id which has been assigned to the course)
         const courseToSave = this;
 
         return Course.getCourses()
@@ -43,27 +43,24 @@ module.exports = class Course {
             });
     }
 
-    signInContact(contactToSignInId) {
-        const courseToSignContact = this;
+    enrollContact(contactToEnrollId) {
+        const course = this;
 
-        if (!courseToSignContact.signedIn) {
-            // if there's no property signedIn for contact adds with contact in array
-            courseToSignContact.signedIn = [contactToSignInId];
+        if (!course.enrolled) {
+            // if there's no property enrolled for contact adds with contact in array
+            course.enrolled = [contactToEnrollId];
         } else {
-            // check if contac is not already signed in to the course
+            // check if contac is not already enrolled in to the course
             if (
-                !courseToSignContact.signedIn.find(
-                    contactId => contactId == contactToSignInId
+                !course.enrolled.find(
+                    contactId => contactId == contactToEnrollId
                 )
             ) {
-                // if contact has not been asigned to the course befor - assign it
-                courseToSignContact.signedIn = [
-                    ...courseToSignContact.signedIn,
-                    contactToSignInId
-                ];
+                // if contact has not been enrolled to the course before - enroll it
+                course.enrolled = [...course.enrolled, contactToEnrollId];
             } else {
                 console.log(
-                    `Contact already signedIn to the course. Can't do it again`
+                    `Contact already enrolled to the course. Can't do it again`
                 );
                 // NEEDED - add some visual infromation for user
             }
@@ -74,20 +71,20 @@ module.exports = class Course {
         const course = this;
 
         if (
-            course.signedIn &&
-            course.signedIn.find(
+            course.enrolled &&
+            course.enrolled.find(
                 contactId => contactId === contactToDisenrollId
             )
         ) {
-            // if contact enrolled to the course return course with removed contact from array in course's signIn property
+            // if contact enrolled to the course return course with removed contact from array in course's enrolled property
 
-            const newSignedIn = course.signedIn.filter(
+            const newenrolled = course.enrolled.filter(
                 contactId => contactId !== contactToDisenrollId
             );
             return new Course(
                 course.id,
                 course.courseName,
-                course.signedIn.filter(
+                course.enrolled.filter(
                     contactId => contactId !== contactToDisenrollId
                 )
             );
@@ -101,16 +98,16 @@ module.exports = class Course {
         );
     }
 
-    updateSignedContacts() {
-        // changes each signedIn contact from id to real contact
+    updateEnrolledContacts() {
+        // changes each enrolled contact from id to real contact
         // needed for showing to user
         const course = this;
-        if (course.signedIn && course.signInContact.length > 0) {
+        if (course.enrolled && course.enrollContact.length > 0) {
             // wrap getting contacts data in one promise
             // - resolves when promises for each contact are resolved and then construct updated course object
 
             return new Promise((resolve, reject) => {
-                const promises = course.signedIn.map(contactId => {
+                const promises = course.enrolled.map(contactId => {
                     // wrap Contact.getById in new promise as Contact.getById resolves to undefined when it can't find user
                     // and we want here to return object with id and notFound: true for unfound users (needed to show in view)
                     return new Promise((resolve, reject) => {
@@ -129,16 +126,16 @@ module.exports = class Course {
                     });
                 });
 
-                Promise.all(promises).then(signedInContacts => {
+                Promise.all(promises).then(enrolledContacts => {
                     // resolve updated course object
                     resolve({
                         ...course,
-                        signedIn: signedInContacts
+                        enrolled: enrolledContacts
                     });
                 });
             });
         }
-        // if no one signed to the course just return course object
+        // if no one is enrolled in the course just return course object
         return course;
     }
 
@@ -155,7 +152,7 @@ module.exports = class Course {
                     return new Course(
                         course.id,
                         course.courseName,
-                        course.signedIn || [] //if property is undefined set empty array
+                        course.enrolled || [] //if property is undefined set empty array
                     );
                 });
             })
@@ -209,7 +206,7 @@ module.exports = class Course {
         return Course.getCourses()
             .then(courses => {
                 const foundCourses = courses.filter(course => {
-                    return course.signedIn.includes(userId);
+                    return course.enrolled.includes(userId);
                 });
                 return foundCourses;
             })

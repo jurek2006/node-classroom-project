@@ -5,10 +5,10 @@
 
 <!-- set default value to disabledEnrolling to false -->
 <% try{disabledEnrolling = disabledEnrolling} catch(e){ disabledEnrolling =
-false; } %> <% if(course.signedIn && course.signedIn.length > 0) { %>
+false; } %> <% if(course.enrolled && course.enrolled.length > 0) { %>
 
 <ul>
-    <% for(const contact of course.signedIn){ %>
+    <% for(const contact of course.enrolled){ %>
     <li>
         <!-- if contact not found show its id and change button to 'clean' to disenroll it from the course -->
         <% if(contact.notFound) { %> not existing contact with id <%= contact.id
@@ -30,5 +30,5 @@ false; } %> <% if(course.signedIn && course.signedIn.length > 0) { %>
     <% } %>
 </ul>
 <% } else {%>
-<p>No one signed to the course</p>
+<p>No one is enrolled in the course</p>
 <% } %>

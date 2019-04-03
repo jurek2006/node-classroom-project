@@ -7,7 +7,7 @@
     <h1><%= title %></h1>
 
     <p>Do you really want to delete course <span class="highlighted"> <%= course.courseName %> </span>?</p>
-    <p>Students enrolled to the course: <span class="highlighted"> <%= course.signedIn.length %></span></p>
+    <p>Students enrolled to the course: <span class="highlighted"> <%= course.enrolled.length %></span></p>
 
     <form action="" method="POST">
         <button type="submit">Yes, delete course</button>
