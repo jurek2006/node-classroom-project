@@ -1,11 +1,5 @@
 <%- include('../includes/html-head.ejs') %>
 
-</head>
-
-<body>
-    <%- include('../includes/navbar.ejs') %>
-    <h1><%= title %></h1>
-
     <p>Can not delete contact <span class="highlighted"> <%= contact.firstName %> <%= contact.lastName %> </span> because is enrolled to <span class="highlighted"><%= coursesEnrolled.length %> </span> course/s</p>
     <p>Before deletion go to <a href="/contact/<%= contact.id %>">contact details</a> and disenroll from all courses.</p>
 

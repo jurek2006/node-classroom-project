@@ -18,7 +18,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <!-- <a class="nav-link" href="#">Link</a> -->
                 <a
                     href="/contact/list"
                     class="nav-link <%= locals.path === '/contact/list' ? 'active' : '' %>"
@@ -26,7 +25,6 @@
                 >
             </li>
             <li class="nav-item">
-                <!-- <a class="nav-link" href="#">Link</a> -->
                 <a
                     href="/course/list"
                     class="nav-link <%= locals.path === '/course/list' ? 'active' : '' %>"
@@ -36,38 +34,3 @@
         </ul>
     </div>
 </nav>
-<!-- ------------------------------------------ -->
-
-<ul>
-    <li>
-        <a href="/" class="<%= locals.path === '/' ? 'active' : '' %>">Index</a>
-    </li>
-    <li>
-        <a
-            href="/contact/list"
-            class="<%= locals.path === '/contact/list' ? 'active' : '' %>"
-            >Contacts list</a
-        >
-    </li>
-    <li>
-        <a
-            href="/contact/add"
-            class="<%= locals.path === '/contact/add' ? 'active' : '' %>"
-            >Add contact</a
-        >
-    </li>
-    <li>
-        <a
-            href="/course/list"
-            class="<%= locals.path === '/course/list' ? 'active' : '' %>"
-            >Courses list</a
-        >
-    </li>
-    <li>
-        <a
-            href="/course/add"
-            class="<%= locals.path === '/course/add' ? 'active' : '' %>"
-            >Add course</a
-        >
-    </li>
-</ul>
