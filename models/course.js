@@ -172,19 +172,15 @@ module.exports = class Course {
     }
 
     static getById(id) {
-        // returns promise which resolves to Course data if succeed and to undefined if fail
-        return Course.getCourses()
-            .then(courses => {
-                const foundCourse = courses.find(course => course.id === id);
-                if (!foundCourse) {
-                    throw new Error(`Course with id ${id} does not exist`);
-                }
-                return foundCourse;
-            })
-            .catch(err => {
-                console.log(err);
-                throw err;
-            });
+        // returns promise which resolves to Course data if succeed
+        // throws error if fails
+        return Course.getCourses().then(courses => {
+            const foundCourse = courses.find(course => course.id === id);
+            if (!foundCourse) {
+                throw new Error(`Course with id ${id} does not exist`);
+            }
+            return foundCourse;
+        });
     }
 
     static deleteById(id) {

@@ -19,26 +19,43 @@ exports.getAddCourse = (req, res, next) => {
 };
 
 exports.postSaveCourse = (req, res, next) => {
-    // if id passed we're in updating existing course, otherwise we're creating and saving new one
-    const { courseName, id } = req.body;
-    const course = new Course(id, courseName);
-    course
-        .save()
-        .then(() => {
-            if (id) {
-                // updated existing user
-                res.redirect(`/course/${id}`);
-            } else {
-                // created new user
-                res.redirect("/course/list");
-            }
+    // updates existing course if id passed, otherwise creats and saves new course
+
+    const { id, courseName } = req.body; //from form inputs with method post
+
+    new Promise((resolve, reject) => {
+        // promise resolves to Course item - updated or new one
+        // if updating (id given) and course with this id not found rejects with error
+        // witch is catched in the last part of the chain
+        if (id) {
+            Course.getById(id).then(
+                oldCourse => {
+                    //resolves to updated course with same id and enrolled
+                    resolve(new Course(id, courseName, oldCourse.enrolled));
+                },
+                err => {
+                    reject(err);
+                }
+            );
+        } else {
+            // resolves to new course (with id === undefined)
+            resolve(new Course(id, courseName));
+        }
+    })
+        .then(course => {
+            return course.save();
+        })
+        .then(savedCourse => {
+            // succeed in updating existing user or saving new one
+            // for new course id was given in course.save() so it is accessible here to redirect
+            res.redirect(`/course/${savedCourse.id}`);
         })
         .catch(err => {
-            console.log("Can't save course.", err);
+            console.log("Can't update course.", err);
             res.render("error", {
                 title: "Error",
                 error: err,
-                message: `Can't save course with id ${id}`
+                message: `Can't update course with id ${id}`
             });
         });
 };
