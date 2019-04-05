@@ -55,7 +55,9 @@ exports.getContactEdit = (req, res, next) => {
         })
         .then(coursesEnrolled => {
             res.render("contact/contact-edit", {
-                title: editMode ? "Edit contact" : "Contact details",
+                title: `${currentContact.firstName} ${
+                    currentContact.lastName
+                } - ${editMode ? "Edit contact" : "Contact details"}`,
                 contact: currentContact,
                 editMode,
                 coursesEnrolled
@@ -87,14 +89,18 @@ exports.getContactDelete = (req, res, next) => {
             if (coursesEnrolled && coursesEnrolled.length > 0) {
                 // contact is enrolled to some courses
                 res.render("contact/contact-delete-prohibite", {
-                    title: "Can not delete contact",
+                    title: `${currentContact.firstName} ${
+                        currentContact.lastName
+                    } - Can not delete contact`,
                     contact: currentContact,
                     coursesEnrolled
                 });
             } else {
                 // contact is not enrolled to any course
                 res.render("contact/contact-delete-confirm", {
-                    title: "Confirm delete contact",
+                    title: `${currentContact.firstName} ${
+                        currentContact.lastName
+                    } - Confirm contact deletion`,
                     contact: currentContact
                 });
             }

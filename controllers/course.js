@@ -61,6 +61,8 @@ exports.postSaveCourse = (req, res, next) => {
 };
 
 exports.getCoursetEdit = (req, res, next) => {
+    // shows contact's detail view or edit (depends on editMode parameter)
+
     const id = req.params.id;
     const editMode = req.query.edit;
     Course.getById(id)
@@ -74,9 +76,12 @@ exports.getCoursetEdit = (req, res, next) => {
             }
         })
         .then(course => {
+            console.log("course", course);
             // here we got course with updated contacts object in course.enrolled property
             res.render("course/course-edit", {
-                title: editMode ? "Edit course" : "Course details",
+                title: `${course.courseName} - ${
+                    editMode ? "Edit course" : "Course details"
+                }`,
                 course,
                 editMode
             });
@@ -97,7 +102,7 @@ exports.getCourseDelete = (req, res, next) => {
         .then(course => {
             if (course) {
                 res.render("course/course-delete-confirm", {
-                    title: "Confirm delete course",
+                    title: `${course.courseName} - Confirm deletion`,
                     course
                 });
             } else {
@@ -154,7 +159,7 @@ exports.getEnrolledInView = (req, res, next) => {
             });
 
             res.render("course/course-enroll", {
-                title: "Manage enrolled in the course",
+                title: `${currentCourse.courseName} - Manage enrolled contacts`,
                 course: currentCourse,
                 contacts: contacts
             });
@@ -169,6 +174,7 @@ exports.getEnrolledInView = (req, res, next) => {
 };
 
 exports.getEnrolled = (req, res, next) => {
+    /* enroll contact to course */
     const courseId = req.params.id;
     const contactId = req.params.contactId;
     Course.getById(courseId)
