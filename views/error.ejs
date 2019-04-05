@@ -1,12 +1,8 @@
 <%- include('./includes/html-head.ejs') %>
 
-</head>
+<h1><%= title %></h1>
 
-<body>
-    <%- include('./includes/navbar.ejs') %>
-    <h1><%= title %></h1>
+<p><%= message.length > 0 ? message : '' %></p>
+<p><%= error %></p>
 
-    <p><%= message.length > 0 ? message : '' %></p>
-    <p><%= error %></p>
-
-    <%- include('./includes/html-end.ejs') %>
+<%- include('./includes/html-end.ejs') %>
