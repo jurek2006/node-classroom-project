@@ -35,6 +35,8 @@
         <%- course ? `<input type="hidden" name="id" value="${course.id}" >` :""%>
     </form>
 
+
+    <h2>Enrolled in the course:</h2>
     <% if(course &&  !editMode) { %>
         <!-- showing list of enrolled contacts -->
         <%- include('../includes/course/enrolled-list.ejs', {disabledEnrolling: true}) %>

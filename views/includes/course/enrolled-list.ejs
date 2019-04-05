@@ -5,17 +5,20 @@
 
 <!-- set default value to disabledEnrolling to false -->
 <% try{disabledEnrolling = disabledEnrolling} catch(e){ disabledEnrolling =
-false; } %> <% if(course.enrolled && course.enrolled.length > 0) { %>
+false; } %> 
 
-<ul>
+<% if(course.enrolled && course.enrolled.length > 0) { %>
+<!-- if there is someone enrolled -->
+
+<ul class="list-group">
     <% for(const contact of course.enrolled){ %>
-    <li>
+    <li class="list-group-item">
         <!-- if contact not found show its id and change button to 'clean' to disenroll it from the course -->
         <% if(contact.notFound) { %> not existing contact with id <%= contact.id
         %> <% } else { %> <%= contact.firstName %> <%= contact.lastName %>
-        <a href="/contact/<%= contact.id %>">contact's detail</a>
+        <a href="/contact/<%= contact.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="contact's detail"><i class="fas fa-user"></i></a>
         <% } %> <% if(!disabledEnrolling) { %>
-        <form action="/course/disenroll/ %>" method="POST">
+        <form class="inline" action="/course/disenroll/ %>" method="POST">
             <input type="hidden" name="courseId" value="<%= course.id %>" />
             <input type="hidden" name="contactId" value="<%= contact.id %>" />
             <input
@@ -23,7 +26,12 @@ false; } %> <% if(course.enrolled && course.enrolled.length > 0) { %>
                 name="redirectBackPath"
                 value="<%= locals.path %>"
             />
-            <button><%= (contact.notFound) ? "clean" : "disenroll" %></button>
+            <% if(!contact.notFound) { %>
+            <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll contact"><i class="fas fa-user-minus"></i></button>
+            <!-- <button class="btn btn-light btn-sm"><%= (contact.notFound) ? "clean" : "disenroll" %></button> -->
+            <% } else { %>
+                <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="clean enrollment"><i class="fas fa-trash"></i></button>
+            <% } %>
         </form>
         <% } %>
     </li>

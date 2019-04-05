@@ -2,9 +2,11 @@
 
 <a href="add" class="btn btn-primary">Add new contact</a>
 <% if(courses.length > 0) {%>
-<ul>
+<ul class="list-group">
     <% for(let course of courses) { %>
-    <li><a href="/course/<%= course.id %>"> <%= course.courseName %></a></li>
+    <li class="list-group-item">
+        <a href="/course/<%= course.id %>"> <%= course.courseName %></a>
+    </li>
     <% } %>
 </ul>
 <% } else { %>

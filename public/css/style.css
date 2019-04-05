@@ -13,3 +13,8 @@ span.disabled {
 span.highlighted {
     font-weight: bold;
 }
+
+/* make form which is only showing button (to do some put request) inline */
+form.inline{
+    display: inline;
+}

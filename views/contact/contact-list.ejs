@@ -1,9 +1,10 @@
 <%- include('../includes/html-head.ejs') %>
 <a href="add" class="btn btn-primary">Add new contact</a>
 <% if(contacts.length > 0) {%>
-<ul>
+
+<ul class="list-group">
     <% for(let contact of contacts) { %>
-    <li>
+    <li class="list-group-item">
         <a href="/contact/<%= contact.id %>">
             <%= contact.firstName %> <%= contact.lastName %></a
         >
