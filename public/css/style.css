@@ -1,4 +1,4 @@
-.card{
+.card {
     margin: 1em;
 }
 
@@ -15,6 +15,22 @@ span.highlighted {
 }
 
 /* make form which is only showing button (to do some put request) inline */
-form.inline{
+form.inline {
     display: inline;
+}
+
+/* list group modification */
+.my-list-item {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center; /* align vertical */
+}
+
+.my-list-item:hover {
+    background-color: #eeeeee;
+    font-weight: bold;
+}
+
+.my-list-item .btn-toolbar > * {
+    margin-left: 5px;
 }

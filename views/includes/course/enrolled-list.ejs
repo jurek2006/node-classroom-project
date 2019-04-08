@@ -12,28 +12,42 @@ false; } %>
 
 <ul class="list-group">
     <% for(const contact of course.enrolled){ %>
-    <li class="list-group-item">
-        <!-- if contact not found show its id and change button to 'clean' to disenroll it from the course -->
-        <% if(contact.notFound) { %> not existing contact with id <%= contact.id
-        %> <% } else { %> <%= contact.firstName %> <%= contact.lastName %>
-        <a href="/contact/<%= contact.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="contact's detail"><i class="fas fa-user"></i></a>
-        <% } %> <% if(!disabledEnrolling) { %>
-        <form class="inline" action="/course/disenroll/ %>" method="POST">
-            <input type="hidden" name="courseId" value="<%= course.id %>" />
-            <input type="hidden" name="contactId" value="<%= contact.id %>" />
-            <input
-                type="hidden"
-                name="redirectBackPath"
-                value="<%= locals.path %>"
-            />
+    <li class="list-group-item my-list-item">
+        <% if(contact.notFound) { %> 
+            <!-- if contact not found show its id and change button to 'clean' to disenroll it from the course -->
+            <span>not existing contact with id <%= contact.id %></span>
+        <% } else { %> 
+            <!-- if contact exist - show its data and operations' buttons -->
+            <%= contact.firstName %> <%= contact.lastName %>
+        <% } %> 
+
+        <!-- button toolbar -->
+        <div class="btn-toolbar" role="toolbar">
             <% if(!contact.notFound) { %>
-            <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll contact"><i class="fas fa-user-minus"></i></button>
-            <!-- <button class="btn btn-light btn-sm"><%= (contact.notFound) ? "clean" : "disenroll" %></button> -->
-            <% } else { %>
-                <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="clean enrollment"><i class="fas fa-trash"></i></button>
+                <!-- if contact fount - link to its data view -->
+                <a href="/contact/<%= contact.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="contact's detail"><i class="fas fa-user"></i></a>
             <% } %>
-        </form>
-        <% } %>
+
+            <% if(!disabledEnrolling) { %>
+                <!-- if not disabledEnrolling passed to the view - show button to disenroll contact - -->
+                <form class="inline" action="/course/disenroll/ %>" method="POST">
+                    <input type="hidden" name="courseId" value="<%= course.id %>" />
+                    <input type="hidden" name="contactId" value="<%= contact.id %>" />
+                    <input
+                    type="hidden"
+                    name="redirectBackPath"
+                    value="<%= locals.path %>"
+                    />
+                    <% if(!contact.notFound) { %>
+                        <!-- button to disenroll when enrolled contact exists-->
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll contact"><i class="fas fa-user-minus"></i></button>
+                    <% } else { %>
+                        <!-- button to clean enrollment when enrolled contact does not exist (it is an error) -->
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="clean enrollment"><i class="fas fa-trash"></i></button>
+                    <% } %>
+                </form>
+            <% } %>
+        </div>
     </li>
     <% } %>
 </ul>

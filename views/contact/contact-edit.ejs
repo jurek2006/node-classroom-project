@@ -41,18 +41,25 @@
     <!-- if contact enrolled to any course - show list of contact's courses -->
     <!-- has to be outside form above -->
     <h2>Contact enrolled to courses:</h2>
-    <ul>
+    <ul  class="list-group">
         <% for(let course of coursesEnrolled) { %>
-        <li>
+        <li class="list-group-item my-list-item">
             <a href="/course/<%= course.id %>"><%= course.courseName %></a>
-    
-            <!-- form to disenroll contact from a course using post -->
-            <form action="/course/disenroll/ %>" method="POST">
-                <input type="hidden" name="courseId" value="<%= course.id %>" />
-                <input type="hidden" name="contactId" value="<%= contact.id %>" />
-                <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
-                <button>disenroll</button>
-            </form>
+
+            <div class="btn-toolbar" role="toolbar">
+
+                <a href="/course/<%= course.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
+                    title="course <%= course.courseName %> detail"><i class="fas fa-chalkboard-teacher"></i></a>
+                
+                <!-- form to disenroll contact from a course using post -->
+                <form class="inline float-right" action="/course/disenroll/ %>" method="POST">
+                    <input type="hidden" name="courseId" value="<%= course.id %>" />
+                    <input type="hidden" name="contactId" value="<%= contact.id %>" />
+                    <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll <%= contact.firstName %> <%= contact.lastName %> from <%= course.courseName %>"><i
+                            class="fas fa-user-minus"></i></button>
+                </form>
+            </div>
         </li>
         <% } %>
     </ul>
