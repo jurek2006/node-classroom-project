@@ -1,5 +1,9 @@
 <%- include('../includes/html-head.ejs') %>
 
+<!-- BOOTSTRAP CARD START -->
+<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
+<!-- Content inside card-body -->
+
     <%
             <!-- if course given we're editing course or course details view, otherwise adding new course -->
             let defaults = {
@@ -42,6 +46,9 @@
         <%- include('../includes/course/enrolled-list.ejs', {disabledEnrolling: true}) %>
     <% } %>
 
+<!-- End of content inside card-body -->
+<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
+<!-- BOOTSTRAP CARD END -->
 
 <%- include('../includes/html-end.ejs') %>
     

@@ -1,5 +1,9 @@
 <%- include('../includes/html-head.ejs') %>
 
+<!-- BOOTSTRAP CARD START -->
+<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
+<!-- Content inside card-body -->
+
 <p>
     Do you really want to delete course
     <span class="highlighted"> <%= course.courseName %> </span>?
@@ -14,5 +18,9 @@
     <a href="../<%= course.id %>">Cancel</a>
     <input type="hidden" name="id" value="<%= course.id %>" />
 </form>
+
+<!-- End of content inside card-body -->
+<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
+<!-- BOOTSTRAP CARD END -->
 
 <%- include('../includes/html-end.ejs') %>

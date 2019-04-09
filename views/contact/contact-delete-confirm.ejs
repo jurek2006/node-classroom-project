@@ -1,16 +1,26 @@
 <%- include('../includes/html-head.ejs') %>
 
+<!-- BOOTSTRAP CARD START -->
+<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
+<!-- Content inside card-body -->
+
+
+
 <p>
     Do you really want to delete contact
     <span class="highlighted">
         <%= contact.firstName %> <%= contact.lastName %> </span
-    >?
-</p>
-
-<form action="" method="POST">
-    <button type="submit">Yes, delete contact</button>
+        >?
+    </p>
+    
+    <form action="" method="POST">
+        <button type="submit">Yes, delete contact</button>
     <a href="../<%= contact.id %>">Cancel</a>
     <input type="hidden" name="id" value="<%= contact.id %>" />
 </form>
+
+<!-- End of content inside card-body -->
+<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
+<!-- BOOTSTRAP CARD END -->
 
 <%- include('../includes/html-end.ejs') %>

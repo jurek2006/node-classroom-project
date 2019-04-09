@@ -1,16 +1,26 @@
 <%- include('../includes/html-head.ejs') %>
+<!-- BOOTSTRAP CARD START -->
+<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
+<!-- Content inside card-body -->
+
+
 <a href="add" class="btn btn-primary">Add new contact</a>
 <% if(contacts.length > 0) {%>
-
-<ul class="list-group">
+    
+    <ul class="list-group">
     <% for(let contact of contacts) { %>
-    <li class="list-group-item">
-        <a href="/contact/<%= contact.id %>">
-            <%= contact.firstName %> <%= contact.lastName %></a
+        <li class="list-group-item">
+            <a href="/contact/<%= contact.id %>">
+                <%= contact.firstName %> <%= contact.lastName %></a
         >
     </li>
     <% } %>
 </ul>
 <% } else { %>
-<p>There are no contacts yet.</p>
-<% } %> <%- include('../includes/html-end.ejs') %>
+    <p>There are no contacts yet.</p>
+<% } %> 
+
+<!-- End of content inside card-body -->
+<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
+<!-- BOOTSTRAP CARD END -->
+<%- include('../includes/html-end.ejs') %>

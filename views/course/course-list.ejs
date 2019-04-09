@@ -1,5 +1,9 @@
 <%- include('../includes/html-head.ejs') %>
 
+<!-- BOOTSTRAP CARD START -->
+<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
+<!-- Content inside card-body -->
+
 <a href="add" class="btn btn-primary">Add new contact</a>
 <% if(courses.length > 0) {%>
 <ul class="list-group">
@@ -12,3 +16,8 @@
 <% } else { %>
 <p>There are no courses yet.</p>
 <% } %> <%- include('../includes/html-end.ejs') %>
+
+<!-- End of content inside card-body -->
+<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
+<!-- BOOTSTRAP CARD END -->
+

@@ -1,73 +1,81 @@
 <%- include('../includes/html-head.ejs') %>
 
-    <%
-        <!-- if contact given we're editing contact or contact details view, otherwise adding new contact -->
-        let defaults = {
-            firstName: '',
-            lastName: ''
-        }
-        if(contact){
-            defaults = {...contact}
-        }
-    %>
+<!-- BOOTSTRAP CARD START -->
+<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
+<!-- Content inside card-body -->
 
-
-    <form action="/contact/save" method="POST">
-        <!-- for editing contact when editMode is not set - editing is disabled -->
-        <input type="text" name="firstName" id="firstName" value="<%= defaults.firstName %>" <%= contact && !editMode ? "disabled" : "" %>>
-        <input type="text" name="lastName" id="lastName" value="<%= defaults.lastName %>" <%= contact && !editMode ? "disabled" : "" %>>
-
-        <% if (contact && editMode){ %>
-                <!-- editing contact -->
-                <button type="submit">Update contact</button>
-                <a href="<%= contact.id%>/delete">Delete contact</a>
-                <a href="<%= contact.id%>">Cancel</a>
-        <% } else if(contact && !editMode) { %>
-                <!-- contact's detail view -->
-                <a href="?edit=true">Edit</a>
-                <a href="/contact/list">Back to contacts list</a>
-
-        <% } else { %>
-            <!-- adding new contact -->
-            <button type="submit">Save contact</button>
-            <a href="/contact/list">Cancel</a>
-        <% } %>
+<%
+    <!-- if contact given we're editing contact or contact details view, otherwise adding new contact -->
+    let defaults = {
+        firstName: '',
+        lastName: ''
+    }
+    if(contact){
+        defaults = {...contact}
+    }
+%> 
         
-        
-        <%- contact ? `<input type="hidden" name="id" value="${contact.id}" >` :""%>
-    </form>
+<form action="/contact/save" method="POST">
+    <!-- for editing contact when editMode is not set - editing is disabled -->
+    <input type="text" name="firstName" id="firstName" value="<%= defaults.firstName %>" <%= contact && !editMode ? "disabled" : "" %>>
+    <input type="text" name="lastName" id="lastName" value="<%= defaults.lastName %>" <%= contact && !editMode ? "disabled" : "" %>>
+    
+    <% if (contact && editMode){ %>
+        <!-- editing contact -->
+        <button type="submit">Update contact</button>
+        <a href="<%= contact.id%>/delete">Delete contact</a>
+        <a href="<%= contact.id%>">Cancel</a>
 
-    <% if (contact && coursesEnrolled && coursesEnrolled.length > 0){ %>
+    <% } else if(contact && !editMode) { %>
+        <!-- contact's detail view -->
+        <a href="?edit=true">Edit</a>
+        <a href="/contact/list">Back to contacts list</a>
+            
+    <% } else { %>
+        <!-- adding new contact -->
+        <button type="submit">Save contact</button>
+        <a href="/contact/list">Cancel</a>
+    <% } %>
+                            
+    <%- contact ? `<input type="hidden" name="id" value="${contact.id}" >` :""%>
+</form>
+                    
+<% if (contact && coursesEnrolled && coursesEnrolled.length > 0){ %>
     <!-- if contact enrolled to any course - show list of contact's courses -->
     <!-- has to be outside form above -->
     <h2>Contact enrolled to courses:</h2>
     <ul  class="list-group">
         <% for(let course of coursesEnrolled) { %>
-        <li class="list-group-item my-list-item">
-            <a href="/course/<%= course.id %>"><%= course.courseName %></a>
-
-            <div class="btn-toolbar" role="toolbar">
-
-                <a href="/course/<%= course.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
-                    title="course <%= course.courseName %> detail"><i class="fas fa-chalkboard-teacher"></i></a>
+            <li class="list-group-item my-list-item">
+                <a href="/course/<%= course.id %>"><%= course.courseName %></a>
                 
-                <!-- form to disenroll contact from a course using post -->
-                <form class="inline float-right" action="/course/disenroll/ %>" method="POST">
-                    <input type="hidden" name="courseId" value="<%= course.id %>" />
-                    <input type="hidden" name="contactId" value="<%= contact.id %>" />
-                    <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
+                <div class="btn-toolbar" role="toolbar">
+                    
+                    <a href="/course/<%= course.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
+                        title="course <%= course.courseName %> detail"><i class="fas fa-chalkboard-teacher"></i></a>
+                        
+                    <!-- form to disenroll contact from a course using post -->
+                    <form class="inline float-right" action="/course/disenroll/ %>" method="POST">
+                        <input type="hidden" name="courseId" value="<%= course.id %>" />
+                        <input type="hidden" name="contactId" value="<%= contact.id %>" />
+                        <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
                         <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll <%= contact.firstName %> <%= contact.lastName %> from <%= course.courseName %>"><i
                             class="fas fa-user-minus"></i></button>
-                </form>
-            </div>
-        </li>
+                    </form>
+                </div>
+            </li>
         <% } %>
     </ul>
-    <% } else { %>
-    <h2>Not enrolled to any course yet.</h2>
-    <% }%>
+<% } else { %>
+        <h2>Not enrolled to any course yet.</h2>
+<% }%>
+        
+<!-- End of content inside card-body -->
+<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
+<!-- BOOTSTRAP CARD END -->
 
 <%- include('../includes/html-end.ejs') %>
-    
-
-
+        
+        
+        
+        
