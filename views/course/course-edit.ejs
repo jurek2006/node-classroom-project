@@ -1,54 +1,55 @@
 <%- include('../includes/html-head.ejs') %>
 
-<!-- BOOTSTRAP CARD START -->
-<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
-<!-- Content inside card-body -->
+<%
+    <!-- if course given we're editing course or course details view, otherwise adding new course -->
+    let defaults = {
+        courseName: '',
+    }
+    if(course){
+        defaults = {...course}
+    }
+%>
 
-    <%
-            <!-- if course given we're editing course or course details view, otherwise adding new course -->
-            let defaults = {
-                courseName: '',
-            }
-            if(course){
-                defaults = {...course}
-            }
-        %>
+<div class="card">
+    <div class="card-header">
+        <h1 class="card__title"><%= title %></h1>
+    </div>
+    <div class="card-body">
 
-    <form action="/course/save" method="POST">
-        <!-- for editing course when editMode is not set - editing is disabled -->
-        <input type="text" name="courseName" id="courseName" value="<%= defaults.courseName %>"
-            <%= course && !editMode ? "disabled" : "" %>>
-    
-        <% if (course && editMode){ %>
-        <!-- editing course -->
-        <button type="submit">Update course</button>
-        <a href="<%= course.id%>/delete">Delete course</a>
-        <a href="<%= course.id%>">Cancel</a>
-        <% } else if(course && !editMode) { %>
-            <!-- course's detail view -->
-            <a href="?edit=true">Edit</a>
-            <a href="/course/list">Back to courses list</a>
-            <a href="<%= course.id%>/enroll">Manage enrolled</a>
-        <% } else { %>
-        <!-- adding new course -->
-        <button type="submit">Save course</button>
-        <a href="/course/list">Cancel</a>
+        <form action="/course/save" method="POST">
+            <!-- for editing course when editMode is not set - editing is disabled -->
+            <input type="text" name="courseName" id="courseName" value="<%= defaults.courseName %>"
+                <%= course && !editMode ? "disabled" : "" %>>
+        
+            <% if (course && editMode){ %>
+            <!-- editing course -->
+            <button type="submit">Update course</button>
+            <a href="<%= course.id%>/delete">Delete course</a>
+            <a href="<%= course.id%>">Cancel</a>
+            <% } else if(course && !editMode) { %>
+                <!-- course's detail view -->
+                <a href="?edit=true">Edit</a>
+                <a href="/course/list">Back to courses list</a>
+                <a href="<%= course.id%>/enroll">Manage enrolled</a>
+            <% } else { %>
+            <!-- adding new course -->
+            <button type="submit">Save course</button>
+            <a href="/course/list">Cancel</a>
+            <% } %>
+        
+        
+            <%- course ? `<input type="hidden" name="id" value="${course.id}" >` :""%>
+        </form>
+
+
+        <h2>Enrolled in the course:</h2>
+        <% if(course &&  !editMode) { %>
+            <!-- showing list of enrolled contacts -->
+            <%- include('../includes/course/enrolled-list.ejs', {disabledEnrolling: true}) %>
         <% } %>
-    
-    
-        <%- course ? `<input type="hidden" name="id" value="${course.id}" >` :""%>
-    </form>
 
-
-    <h2>Enrolled in the course:</h2>
-    <% if(course &&  !editMode) { %>
-        <!-- showing list of enrolled contacts -->
-        <%- include('../includes/course/enrolled-list.ejs', {disabledEnrolling: true}) %>
-    <% } %>
-
-<!-- End of content inside card-body -->
-<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
-<!-- BOOTSTRAP CARD END -->
+    </div>
+</div>
 
 <%- include('../includes/html-end.ejs') %>
     

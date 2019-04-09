@@ -1,30 +1,31 @@
 <%- include('../includes/html-head.ejs') %>
 
-<!-- BOOTSTRAP CARD START -->
-<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
-<!-- Content inside card-body -->
+<div class="card">
+    <div class="card-header">
+        <h1 class="card__title"><%= title %></h1>
+    </div>
+    <div class="card-body">
 
-<p>Can not delete contact <span class="highlighted"> <%= contact.firstName %> <%= contact.lastName %> </span> because is enrolled to <span class="highlighted"><%= coursesEnrolled.length %> </span> course/s</p>
-<p>Before deletion go to <a href="/contact/<%= contact.id %>">contact details</a> and disenroll from all courses.</p>
+        <p>Can not delete contact <span class="highlighted"> <%= contact.firstName %> <%= contact.lastName %> </span> because is enrolled to <span class="highlighted"><%= coursesEnrolled.length %> </span> course/s</p>
+        <p>Before deletion go to <a href="/contact/<%= contact.id %>">contact details</a> and disenroll from all courses.</p>
 
-<% if (coursesEnrolled && coursesEnrolled.length > 0){ %>
-    <!-- show list of contact's courses -->
-    <h2>Contact enrolled to courses:</h2>
-    <ul>
-        <% for(let course of coursesEnrolled) { %>
-            <li>
-                <a href="/course/<%= course.id %>"><%= course.courseName %></a>
-            </li>
-        <% } %>
-    </ul>
-<% } else { %>
-    <!-- shouln't happen -->
-    <h2>Error</h2>
-    <p>For some reason it is not possible to show enrolled courses.</p>
-<% }%>
+        <% if (coursesEnrolled && coursesEnrolled.length > 0){ %>
+            <!-- show list of contact's courses -->
+            <h2>Contact enrolled to courses:</h2>
+            <ul>
+                <% for(let course of coursesEnrolled) { %>
+                    <li>
+                        <a href="/course/<%= course.id %>"><%= course.courseName %></a>
+                    </li>
+                <% } %>
+            </ul>
+        <% } else { %>
+            <!-- shouln't happen -->
+            <h2>Error</h2>
+            <p>For some reason it is not possible to show enrolled courses.</p>
+        <% }%>
             
-<!-- End of content inside card-body -->
-<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
-<!-- BOOTSTRAP CARD END -->
+    </div>
+</div>
 
 <%- include('../includes/html-end.ejs') %>

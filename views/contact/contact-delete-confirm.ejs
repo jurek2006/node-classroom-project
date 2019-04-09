@@ -1,10 +1,10 @@
 <%- include('../includes/html-head.ejs') %>
 
-<!-- BOOTSTRAP CARD START -->
-<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
-<!-- Content inside card-body -->
-
-
+<div class="card">
+    <div class="card-header">
+        <h1 class="card__title"><%= title %></h1>
+    </div>
+    <div class="card-body">
 
 <p>
     Do you really want to delete contact
@@ -19,8 +19,7 @@
     <input type="hidden" name="id" value="<%= contact.id %>" />
 </form>
 
-<!-- End of content inside card-body -->
-<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
-<!-- BOOTSTRAP CARD END -->
+    </div>
+</div>
 
 <%- include('../includes/html-end.ejs') %>

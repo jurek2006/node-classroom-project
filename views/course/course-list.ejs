@@ -1,23 +1,26 @@
 <%- include('../includes/html-head.ejs') %>
 
-<!-- BOOTSTRAP CARD START -->
-<%- include('../includes/bootstrap/bootstrap-card-start.ejs') %>
-<!-- Content inside card-body -->
+<div class="card">
+    <div class="card-header">
+        <h1 class="card__title"><%= title %></h1>
+    </div>
+    <div class="card-body">
 
-<a href="add" class="btn btn-primary">Add new contact</a>
-<% if(courses.length > 0) {%>
-<ul class="list-group">
-    <% for(let course of courses) { %>
-    <li class="list-group-item">
-        <a href="/course/<%= course.id %>"> <%= course.courseName %></a>
-    </li>
-    <% } %>
-</ul>
-<% } else { %>
-<p>There are no courses yet.</p>
-<% } %> <%- include('../includes/html-end.ejs') %>
+        <a href="add" class="btn btn-primary">Add new contact</a>
+        <% if(courses.length > 0) {%>
+        <ul class="list-group">
+            <% for(let course of courses) { %>
+            <li class="list-group-item">
+                <a href="/course/<%= course.id %>"> <%= course.courseName %></a>
+            </li>
+            <% } %>
+        </ul>
+        <% } else { %>
+        <p>There are no courses yet.</p>
+        <% } %> 
 
-<!-- End of content inside card-body -->
-<%- include('../includes/bootstrap/bootstrap-card-end.ejs') %>
-<!-- BOOTSTRAP CARD END -->
+    </div>
+</div>
+<%- include('../includes/html-end.ejs') %>
+
 
