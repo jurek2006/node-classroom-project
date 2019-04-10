@@ -21,7 +21,7 @@ form.inline {
 
 /* list group modification */
 .my-list-item {
-    display: flex !important;
+    display: flex;
     justify-content: space-between;
     align-items: center; /* align vertical */
 }
@@ -33,4 +33,42 @@ form.inline {
 
 .my-list-item .btn-toolbar > * {
     margin-left: 5px;
+}
+
+/* bootstrap's card modifications */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__title {
+    margin: 0;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.card-footer > * {
+    margin: 0 0.2em;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+h2 {
+    font-size: 1.3em;
+}
+
+ul.list-group {
+    margin-bottom: 1em;
 }

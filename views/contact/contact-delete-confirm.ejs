@@ -6,19 +6,22 @@
     </div>
     <div class="card-body">
 
-<p>
-    Do you really want to delete contact
-    <span class="highlighted">
-        <%= contact.firstName %> <%= contact.lastName %> </span
-        >?
-    </p>
+        <p>
+            Do you really want to delete contact
+            <span class="highlighted">
+                <%= contact.firstName %> <%= contact.lastName %> 
+            </span>?
+        </p>
     
-    <form action="" method="POST">
-        <button type="submit">Yes, delete contact</button>
-    <a href="../<%= contact.id %>">Cancel</a>
-    <input type="hidden" name="id" value="<%= contact.id %>" />
-</form>
+        <form id="deleteContactForm" method="POST">
+            <input type="hidden" name="id" value="<%= contact.id %>" />
+        </form>
 
+    </div>
+    <div class="card-footer text-muted">
+        <a href="../<%= contact.id %>?edit=true" class="btn btn-secondary"><i class="fas fa-times-circle"></i> Cancel</a>
+        
+        <button type="submit" form="deleteContactForm" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Yes, delete contact</button>
     </div>
 </div>
 

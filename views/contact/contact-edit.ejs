@@ -14,65 +14,87 @@
 <div class="card">
     <div class="card-header">
         <h1 class="card__title"><%= title %></h1>
+        <!-- actions buttons on top of the card -->
+        <div class="btn-toolbar" role="toolbar">
+            <% if (contact && editMode){ %>
+            <!-- editing contact -->
+                    <a href="<%= contact.id%>/delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete contact</a>
+            <% } else if(contact && !editMode) { %>
+            <!-- contact's detail view -->
+                <a href="?edit=true" class="btn btn-primary"><i class="fas fa-edit"></i> Edit contact</a>
+            <% } else { %>
+            <!-- adding new contact -->
+                
+            <% } %>
+        </div>
     </div>
     <div class="card-body">
         
-        <form action="/contact/save" method="POST">
+        <form action="/contact/save" method="POST" id="editContactForm" >
             <!-- for editing contact when editMode is not set - editing is disabled -->
-            <input type="text" name="firstName" id="firstName" value="<%= defaults.firstName %>" <%= contact && !editMode ? "disabled" : "" %>>
-            <input type="text" name="lastName" id="lastName" value="<%= defaults.lastName %>" <%= contact && !editMode ? "disabled" : "" %>>
-            
-            <% if (contact && editMode){ %>
-                <!-- editing contact -->
-                <button type="submit">Update contact</button>
-                <a href="<%= contact.id%>/delete">Delete contact</a>
-                <a href="<%= contact.id%>">Cancel</a>
-
-            <% } else if(contact && !editMode) { %>
-                <!-- contact's detail view -->
-                <a href="?edit=true">Edit</a>
-                <a href="/contact/list">Back to contacts list</a>
-                    
-            <% } else { %>
-                <!-- adding new contact -->
-                <button type="submit">Save contact</button>
-                <a href="/contact/list">Cancel</a>
-            <% } %>
+            <p>
+                <label for="firstName">First name:</label>
+                <input type="text" name="firstName" id="firstName" value="<%= defaults.firstName %>" <%= contact && !editMode ? "disabled" : "" %>>
+            </p>
+            <p>
+                <label for="lastName">Last name:</label>
+                <input type="text" name="lastName" id="lastName" value="<%= defaults.lastName %>" <%= contact && !editMode ? "disabled" : "" %>>
+            </p>
                                     
+            <!-- field to pass contact.id in POST request -->
             <%- contact ? `<input type="hidden" name="id" value="${contact.id}" >` :""%>
         </form>
+        
+        <% if (!editMode){ %>
+        <!-- hide list of enrolled courses when editing contact -->
+            <% if (!editMode && contact && coursesEnrolled && coursesEnrolled.length > 0){ %>
+                <!-- if contact enrolled to any course - show list of contact's courses (not in editMode) -->
+                <!-- has to be outside form above form -->
+                <h2>Contact enrolled to courses:</h2>
+                <ul  class="list-group">
+                    <% for(let course of coursesEnrolled) { %>
+                        <li class="list-group-item my-list-item">
+                            <a href="/course/<%= course.id %>"><%= course.courseName %></a>
                             
-        <% if (contact && coursesEnrolled && coursesEnrolled.length > 0){ %>
-            <!-- if contact enrolled to any course - show list of contact's courses -->
-            <!-- has to be outside form above -->
-            <h2>Contact enrolled to courses:</h2>
-            <ul  class="list-group">
-                <% for(let course of coursesEnrolled) { %>
-                    <li class="list-group-item my-list-item">
-                        <a href="/course/<%= course.id %>"><%= course.courseName %></a>
-                        
-                        <div class="btn-toolbar" role="toolbar">
-                            
-                            <a href="/course/<%= course.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
-                                title="course <%= course.courseName %> detail"><i class="fas fa-chalkboard-teacher"></i></a>
+                            <div class="btn-toolbar" role="toolbar">
                                 
-                            <!-- form to disenroll contact from a course using post -->
-                            <form class="inline float-right" action="/course/disenroll/ %>" method="POST">
-                                <input type="hidden" name="courseId" value="<%= course.id %>" />
-                                <input type="hidden" name="contactId" value="<%= contact.id %>" />
-                                <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
-                                <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll <%= contact.firstName %> <%= contact.lastName %> from <%= course.courseName %>"><i
-                                    class="fas fa-user-minus"></i></button>
-                            </form>
-                        </div>
-                    </li>
-                <% } %>
-            </ul>
-        <% } else { %>
-                <h2>Not enrolled to any course yet.</h2>
+                                <a href="/course/<%= course.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
+                                    title="course <%= course.courseName %> detail"><i class="fas fa-chalkboard-teacher"></i></a>
+                                    
+                                <!-- form to disenroll contact from a course using post -->
+                                <form class="inline float-right" action="/course/disenroll/ %>" method="POST">
+                                    <input type="hidden" name="courseId" value="<%= course.id %>" />
+                                    <input type="hidden" name="contactId" value="<%= contact.id %>" />
+                                    <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
+                                    <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll <%= contact.firstName %> <%= contact.lastName %> from <%= course.courseName %>"><i
+                                        class="fas fa-user-minus"></i></button>
+                                </form>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+            <% } else { %>
+                    <h2>Not enrolled to any course yet.</h2>
+            <% }%>
         <% }%>
         
     </div>
+    
+    <% if (editMode || !contact){ %>
+        <!-- if editing contact or creating new one - add footer for Save, Cancel buttons -->
+        <div class="card-footer text-muted">
+                <% if (editMode){ %>
+                <!-- if editing contact -->
+                    <a href="<%= contact.id%>" class="btn btn-secondary"><i class="fas fa-times-circle"></i> Cancel</a>
+                    <button type="submit" form="editContactForm" class="btn btn-success"><i class="fas fa-check-circle"></i> Update contact</button>
+                <% } else {%>
+                <!-- if creating new contact -->
+                    <a href="/contact/list" class="btn btn-secondary"><i class="fas fa-times-circle"></i> Cancel</a>
+                    <button type="submit" form="editContactForm" class="btn btn-success"><i class="fas fa-check-circle"></i> Save contact</button>
+                <% }%>
+        </div>
+    
+    <% }%>
 </div>
 
 <%- include('../includes/html-end.ejs') %>

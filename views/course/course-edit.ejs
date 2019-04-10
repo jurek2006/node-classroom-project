@@ -13,42 +13,61 @@
 <div class="card">
     <div class="card-header">
         <h1 class="card__title"><%= title %></h1>
+            <!-- actions buttons on top of the card -->
+            <div class="btn-group" role="group" aria-label="Course's actions buttons group">
+                <% if (course && editMode){ %>
+                    <!-- editing course -->
+                    <a href="<%= course.id%>/delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete course</a>
+                <% } else if(course && !editMode) { %>
+                <!-- course's detail view -->
+                    <a href="<%= course.id%>/enroll" class="btn btn-success"><i class="fas fa-address-card"></i> Manage enrolled</a>
+                    <a href="?edit=true" class="btn btn-primary"><i class="fas fa-edit"></i> Edit course</a>
+                <% } else { %>
+                <!-- adding new course -->
+            
+                <% } %>
+            </div>
     </div>
     <div class="card-body">
 
-        <form action="/course/save" method="POST">
+        <form action="/course/save" id="editcourseForm" method="POST">
             <!-- for editing course when editMode is not set - editing is disabled -->
-            <input type="text" name="courseName" id="courseName" value="<%= defaults.courseName %>"
-                <%= course && !editMode ? "disabled" : "" %>>
-        
-            <% if (course && editMode){ %>
-            <!-- editing course -->
-            <button type="submit">Update course</button>
-            <a href="<%= course.id%>/delete">Delete course</a>
-            <a href="<%= course.id%>">Cancel</a>
-            <% } else if(course && !editMode) { %>
-                <!-- course's detail view -->
-                <a href="?edit=true">Edit</a>
-                <a href="/course/list">Back to courses list</a>
-                <a href="<%= course.id%>/enroll">Manage enrolled</a>
-            <% } else { %>
-            <!-- adding new course -->
-            <button type="submit">Save course</button>
-            <a href="/course/list">Cancel</a>
-            <% } %>
-        
-        
+            <p>
+                <label for="courseName">Course name:</label>
+                <input 
+                    type="text" 
+                    name="courseName" 
+                    id="courseName" 
+                    value="<%= defaults.courseName %>"
+                    <%= course && !editMode ? "disabled" : "" %>
+                >
+            </p>
             <%- course ? `<input type="hidden" name="id" value="${course.id}" >` :""%>
         </form>
 
-
-        <h2>Enrolled in the course:</h2>
         <% if(course &&  !editMode) { %>
+            <h2>Enrolled in the course:</h2>
             <!-- showing list of enrolled contacts -->
             <%- include('../includes/course/enrolled-list.ejs', {disabledEnrolling: true}) %>
         <% } %>
-
     </div>
+
+    <% if (editMode || !course){ %>
+    <!-- if editing course or creating new one - add footer for Save, Cancel buttons -->
+        <div class="card-footer text-muted">
+            <% if (editMode){ %>
+            <!-- if editing course -->
+            <a href="<%= course.id%>" class="btn btn-secondary"><i class="fas fa-times-circle"></i> Cancel</a>
+            <button type="submit" form="editcourseForm" class="btn btn-success"><i class="fas fa-check-circle"></i> Update
+                course</button>
+            <% } else {%>
+            <!-- if creating new course -->
+            <a href="/course/list" class="btn btn-secondary"><i class="fas fa-times-circle"></i> Cancel</a>
+            <button type="submit" form="editcourseForm" class="btn btn-success"><i class="fas fa-check-circle"></i> Save
+                course</button>
+            <% }%>
+        </div>
+    <% }%>
 </div>
 
 <%- include('../includes/html-end.ejs') %>

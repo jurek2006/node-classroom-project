@@ -15,12 +15,17 @@
             <span class="highlighted"> <%= course.enrolled.length %></span>
         </p>
 
-        <form action="" method="POST">
-            <button type="submit">Yes, delete course</button>
-            <a href="../<%= course.id %>">Cancel</a>
+        <form id="deleteCourseForm" method="POST">
             <input type="hidden" name="id" value="<%= course.id %>" />
         </form>
 
+    </div>
+
+    <div class="card-footer text-muted">
+        <a href="../<%= course.id %>?edit=true" class="btn btn-secondary"><i class="fas fa-times-circle"></i> Cancel</a>
+    
+        <button type="submit" form="deleteCourseForm" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Yes, delete
+            course</button>
     </div>
 </div>
 

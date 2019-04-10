@@ -7,7 +7,7 @@
     <div class="card-body">
 
         <p>Can not delete contact <span class="highlighted"> <%= contact.firstName %> <%= contact.lastName %> </span> because is enrolled to <span class="highlighted"><%= coursesEnrolled.length %> </span> course/s</p>
-        <p>Before deletion go to <a href="/contact/<%= contact.id %>">contact details</a> and disenroll from all courses.</p>
+        <p>Before deletion go to <a href="../<%= contact.id %>">contact's details</a> and disenroll from all courses.</p>
 
         <% if (coursesEnrolled && coursesEnrolled.length > 0){ %>
             <!-- show list of contact's courses -->
@@ -26,6 +26,10 @@
         <% }%>
             
     </div>
+        <div class="card-footer text-muted">
+            <a href="../<%= contact.id %>?edit=true" class="btn btn-secondary"><i class="fas fa-times-circle"></i> Cancel</a>
+            <a href="../<%= contact.id %>" class="btn btn-primary"><i class="fas fa-times-circle"></i> Go to contact's details</a>
+        </div>
 </div>
 
 <%- include('../includes/html-end.ejs') %>
