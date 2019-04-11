@@ -3,10 +3,6 @@ body {
     min-width: 280px;
 }
 
-.card {
-    margin: 1em;
-}
-
 a.active {
     color: red;
 }
@@ -42,6 +38,11 @@ form.inline {
 
 /* bootstrap's card modifications */
 
+.card {
+    margin: 1em;
+    border-radius: 0;
+}
+
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -60,6 +61,12 @@ form.inline {
 
 .card-footer > * {
     margin: 0 0.2em;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .card {
+        margin: 0em;
+    }
 }
 
 h1,
