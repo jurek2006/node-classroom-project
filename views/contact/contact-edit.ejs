@@ -58,7 +58,7 @@
                             
                             <div class="btn-toolbar" role="toolbar">
                                 
-                                <a href="/course/<%= course.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
+                                <a href="/course/<%= course.id %>" class="btn btn-outline-secondary" data-toggle="tooltip"
                                     title="course <%= course.courseName %> detail"><i class="fas fa-chalkboard-teacher"></i></a>
                                     
                                 <!-- form to disenroll contact from a course using post -->
@@ -66,7 +66,7 @@
                                     <input type="hidden" name="courseId" value="<%= course.id %>" />
                                     <input type="hidden" name="contactId" value="<%= contact.id %>" />
                                     <input type="hidden" name="redirectBackPath" value="<%= locals.path %>" />
-                                    <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll <%= contact.firstName %> <%= contact.lastName %> from <%= course.courseName %>"><i
+                                    <button class="btn btn-outline-danger" data-toggle="tooltip" title="disenroll <%= contact.firstName %> <%= contact.lastName %> from <%= course.courseName %>"><i
                                         class="fas fa-user-minus"></i></button>
                                 </form>
                             </div>

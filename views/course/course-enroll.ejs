@@ -30,7 +30,7 @@
                         <%= contact.firstName %> <%= contact.lastName %>
                         <div class="btn-toolbar" role="toolbar">
                             <!-- link to enroll not enrolled contact -->
-                            <a href="/course/<%= course.id %>/enroll/<%= contact.id %>" class="btn btn-outline-success btn-md"
+                            <a href="/course/<%= course.id %>/enroll/<%= contact.id %>" class="btn btn-outline-success"
                                 data-toggle="tooltip" title="enroll contact">
                                 %><i class="fas fa-user-plus"></i></a>
                         </div>
@@ -40,7 +40,7 @@
                             <%= contact.firstName %> <%= contact.lastName %> <%= contact.alreadyEnrolled ? ' (enrolled)' : "" %>
                         </span>
                         <div class="btn-toolbar" role="toolbar">
-                            <button class="btn btn-outline-primary btn-md" data-toggle="tooltip" title="contact enrolled" disabled><i
+                            <button class="btn btn-outline-primary" data-toggle="tooltip" title="contact enrolled" disabled><i
                                     class="fas fa-user-check"></i></button>
                         </div>
                         <% } %>

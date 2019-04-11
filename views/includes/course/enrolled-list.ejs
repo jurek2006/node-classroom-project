@@ -22,10 +22,10 @@ false; } %>
         <% } %> 
 
         <!-- button toolbar -->
-        <div class="btn-toolbar" role="toolbar">
+        <div class="btn-toolbar test" role="toolbar">
             <% if(!contact.notFound) { %>
                 <!-- if contact fount - link to its data view -->
-                <a href="/contact/<%= contact.id %>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="contact's detail"><i class="fas fa-user"></i></a>
+                <a href="/contact/<%= contact.id %>" class="btn btn-outline-secondary" data-toggle="tooltip" title="contact's detail"><i class="fas fa-user"></i></a>
             <% } %>
 
             <% if(!disabledEnrolling) { %>
@@ -40,10 +40,10 @@ false; } %>
                     />
                     <% if(!contact.notFound) { %>
                         <!-- button to disenroll when enrolled contact exists-->
-                        <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="disenroll contact"><i class="fas fa-user-minus"></i></button>
+                        <button class="btn btn-outline-danger" data-toggle="tooltip" title="disenroll contact"><i class="fas fa-user-minus"></i></button>
                     <% } else { %>
                         <!-- button to clean enrollment when enrolled contact does not exist (it is an error) -->
-                        <button class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="clean enrollment"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-outline-danger" data-toggle="tooltip" title="clean enrollment"><i class="fas fa-trash"></i></button>
                     <% } %>
                 </form>
             <% } %>
