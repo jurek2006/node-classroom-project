@@ -1,3 +1,8 @@
+body {
+    /* page minimum width */
+    min-width: 280px;
+}
+
 .card {
     margin: 1em;
 }
@@ -36,10 +41,12 @@ form.inline {
 }
 
 /* bootstrap's card modifications */
+
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .card__title {
