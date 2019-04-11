@@ -11,22 +11,22 @@
 %>
 
 <div class="card">
-    <div class="card-header">
-        <h1 class="card__title"><%= title %></h1>
-            <!-- actions buttons on top of the card -->
-            <div class="btn-group" role="group" aria-label="Course's actions buttons group">
-                <% if (course && editMode){ %>
-                    <!-- editing course -->
-                    <a href="<%= course.id%>/delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete course</a>
-                <% } else if(course && !editMode) { %>
-                <!-- course's detail view -->
-                    <a href="<%= course.id%>/enroll" class="btn btn-success"><i class="fas fa-address-card"></i> Manage enrolled</a>
-                    <a href="?edit=true" class="btn btn-primary"><i class="fas fa-edit"></i> Edit course</a>
-                <% } else { %>
-                <!-- adding new course -->
-            
-                <% } %>
-            </div>
+    <div class="card-header __responsive">
+        <h1 class="card__title __responsive__item"><%= title %></h1>
+        <!-- actions buttons on top of the card -->
+        <div class="btn-group __responsive__item" role="group" aria-label="Course's actions buttons group">
+            <% if (course && editMode){ %>
+                <!-- editing course -->
+                <a href="<%= course.id%>/delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete course</a>
+            <% } else if(course && !editMode) { %>
+            <!-- course's detail view -->
+                <a href="<%= course.id%>/enroll" class="btn btn-success"><i class="fas fa-address-card"></i> Manage enrolled</a>
+                <a href="?edit=true" class="btn btn-primary"><i class="fas fa-edit"></i> Edit course</a>
+            <% } else { %>
+            <!-- adding new course -->
+        
+            <% } %>
+        </div>
     </div>
     <div class="card-body">
 

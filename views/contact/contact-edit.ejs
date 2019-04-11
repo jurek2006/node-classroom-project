@@ -12,10 +12,10 @@
 %> 
 
 <div class="card">
-    <div class="card-header">
-        <h1 class="card__title"><%= title %></h1>
+    <div class="card-header __responsive">
+        <h1 class="card__title __responsive__item"><%= title %></h1>
         <!-- actions buttons on top of the card -->
-        <div class="btn-toolbar" role="toolbar">
+        <div class="btn-toolbar __responsive__item" role="toolbar">
             <% if (contact && editMode){ %>
             <!-- editing contact -->
                     <a href="<%= contact.id%>/delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete contact</a>

@@ -82,6 +82,7 @@ ul.list-group {
     display: flex;
     flex-wrap: wrap;
     padding: 0.5em;
+    justify-content: space-between;
 }
 
 .__responsive__item {
@@ -94,14 +95,17 @@ ul.list-group {
 }
 
 @media only screen and (max-device-width: 480px) {
-    .__responsive {
+    /* when element smallet than given width change display from flex 
+        to force sub items on separate rows  */
+    .__responsive--not-sm {
         display: block;
-        /* flex-wrap: wrap; */
         padding: 0;
+        border: 1px solid red;
     }
 }
 
-.test {
+/* forces to display elements in one row (i.e. buttons) */
+.__oneRow {
     display: flex;
     flex-wrap: nowrap;
 }
