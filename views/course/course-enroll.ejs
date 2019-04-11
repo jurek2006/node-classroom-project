@@ -1,64 +1,57 @@
 <%- include('../includes/html-head.ejs') %>
 
 <div class="card">
-    <div class="card-header">
-        <h1 class="card__title"><%= title %></h1>
-        <div class="btn-toolbar" role="toolbar">
+    <div class="card-header __responsive">
+        <h1 class="card__title __responsive__item"><%= title %></h1>
+        <div class="btn-toolbar __responsive__item" role="toolbar">
             <a href="../<%= course.id %>" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to course's detail</a>
             
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body __responsive">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md">
-                    <h2>Enrolled:</h2>
-                    
-                    <!-- showing list of enrolled contacts -->
-                    <%- include('../includes/course/enrolled-list.ejs') %>
+        <div class="__responsive__item--equal">
+            <h2>Enrolled:</h2>
+            
+            <!-- showing list of enrolled contacts -->
+            <%- include('../includes/course/enrolled-list.ejs') %>
 
-                </div>
-                <div class="col-md">
-                    <h2>Enroll:</h2>
-                    <% if(contacts.length > 0) {%>
-                        <ul class="list-group ">
-                            <% for(let contact of contacts) { %>
-                            <li class="list-group-item my-list-item">
-                                <% if(!contact.alreadyEnrolled) {%>
-                                <!-- if contact not already enrolled in the course - print link to enroll the contact -->
-                        
-                        
-                                <%= contact.firstName %> <%= contact.lastName %>
-                                <div class="btn-toolbar" role="toolbar">
-                                    <!-- link to enroll not enrolled contact -->
-                                    <a href="/course/<%= course.id %>/enroll/<%= contact.id %>" class="btn btn-outline-success btn-md"
-                                        data-toggle="tooltip" title="enroll contact">
-                                        %><i class="fas fa-user-plus"></i></a>
-                                </div>
-                                <% } else {%>
-                                <!-- if contact already enrolled - print contact with disabled enrolled button (rather icon because btn is disabled) -->
-                                <span class="<%= contact.alreadyEnrolled ? 'disabled' : ''  %>">
-                                    <%= contact.firstName %> <%= contact.lastName %> <%= contact.alreadyEnrolled ? ' (enrolled)' : "" %>
-                                </span>
-                                <div class="btn-toolbar" role="toolbar">
-                                    <button class="btn btn-outline-primary btn-md" data-toggle="tooltip" title="contact enrolled" disabled><i
-                                            class="fas fa-user-check"></i></button>
-                                </div>
-                                <% } %>
-                        
-                            </li>
-                            <% } %>
-                        </ul>
-                    <% } else { %>
-                        <p>There are no contacts yet.</p>
-                    <% } %>
-                </div>
-            </div>
         </div>
-
-        
-
+        <div class="__responsive__item--equal">
+            <h2>Enroll:</h2>
+            <% if(contacts.length > 0) {%>
+                <ul class="list-group ">
+                    <% for(let contact of contacts) { %>
+                    <li class="list-group-item my-list-item">
+                        <% if(!contact.alreadyEnrolled) {%>
+                        <!-- if contact not already enrolled in the course - print link to enroll the contact -->
+                
+                
+                        <%= contact.firstName %> <%= contact.lastName %>
+                        <div class="btn-toolbar" role="toolbar">
+                            <!-- link to enroll not enrolled contact -->
+                            <a href="/course/<%= course.id %>/enroll/<%= contact.id %>" class="btn btn-outline-success btn-md"
+                                data-toggle="tooltip" title="enroll contact">
+                                %><i class="fas fa-user-plus"></i></a>
+                        </div>
+                        <% } else {%>
+                        <!-- if contact already enrolled - print contact with disabled enrolled button (rather icon because btn is disabled) -->
+                        <span class="<%= contact.alreadyEnrolled ? 'disabled' : ''  %>">
+                            <%= contact.firstName %> <%= contact.lastName %> <%= contact.alreadyEnrolled ? ' (enrolled)' : "" %>
+                        </span>
+                        <div class="btn-toolbar" role="toolbar">
+                            <button class="btn btn-outline-primary btn-md" data-toggle="tooltip" title="contact enrolled" disabled><i
+                                    class="fas fa-user-check"></i></button>
+                        </div>
+                        <% } %>
+                
+                    </li>
+                    <% } %>
+                </ul>
+            <% } else { %>
+                <p>There are no contacts yet.</p>
+            <% } %>
+        </div>
 
     </div>
 </div>

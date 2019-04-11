@@ -43,15 +43,10 @@ form.inline {
     border-radius: 0;
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.card__title {
-    margin: 0;
+@media only screen and (max-device-width: 480px) {
+    .card {
+        margin: 0em;
+    }
 }
 
 .card-footer {
@@ -63,12 +58,7 @@ form.inline {
     margin: 0 0.2em;
 }
 
-@media only screen and (max-device-width: 480px) {
-    .card {
-        margin: 0em;
-    }
-}
-
+/* Headings */
 h1,
 h2,
 h3 {
@@ -85,4 +75,28 @@ h2 {
 
 ul.list-group {
     margin-bottom: 1em;
+}
+
+/* responsive elements (instead of bootstrap col) */
+.__responsive {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5em;
+}
+
+.__responsive__item {
+    margin: 0.5em;
+}
+.__responsive__item--equal {
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 0.5em;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .__responsive {
+        display: block;
+        /* flex-wrap: wrap; */
+        padding: 0;
+    }
 }
