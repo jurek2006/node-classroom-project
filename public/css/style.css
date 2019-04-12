@@ -15,6 +15,20 @@ span.highlighted {
     font-weight: bold;
 }
 
+/* FORMS */
+.__form input {
+    border: 1px solid #666666;
+    background-color: #eeeeee;
+    font-weight: bold;
+}
+
+/* forms showing in "details" mode (only read values) */
+.__form--readOnly input {
+    background-color: transparent;
+    border-color: transparent;
+    color: black;
+}
+
 /* make form which is only showing button (to do some put request) inline */
 form.inline {
     display: inline;

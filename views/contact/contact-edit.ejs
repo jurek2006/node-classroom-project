@@ -30,7 +30,7 @@
     </div>
     <div class="card-body">
         
-        <form action="/contact/save" method="POST" id="editContactForm" >
+        <form action="/contact/save" method="POST" id="editContactForm" class="__form <%= (contact && !editMode )? '__form--readOnly' : '' %>" >
             <!-- for editing contact when editMode is not set - editing is disabled -->
             <p>
                 <label for="firstName">First name:</label>

@@ -30,7 +30,7 @@
     </div>
     <div class="card-body">
 
-        <form action="/course/save" id="editcourseForm" method="POST">
+        <form action="/course/save" id="editcourseForm" method="POST" class="__form <%= (course && !editMode )? '__form--readOnly' : '' %>">
             <!-- for editing course when editMode is not set - editing is disabled -->
             <p>
                 <label for="courseName">Course name:</label>
