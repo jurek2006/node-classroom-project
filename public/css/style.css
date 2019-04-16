@@ -64,7 +64,6 @@ form.inline {
 .my-list-item .btn-toolbar > * {
     margin-left: 5px;
 }
-*/
 
 /* button/link which is whole li element */
 li.__liButton {
@@ -79,7 +78,7 @@ button.__liButton__link {
     display: block;
     width: 100%;
     height: 100%;
-    padding: 0.5em;
+    padding: 1em;
 }
 
 /* bootstrap's card modifications */
