@@ -35,19 +35,51 @@ form.inline {
 }
 
 /* list group modification */
+/* style small "action" buttons on lists */
 .my-list-item {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* align vertical */
+    align-items: center;
 }
 
-.my-list-item:hover {
-    background-color: #eeeeee;
-    font-weight: bold;
+.my-list-item .btn {
+    opacity: 0.5;
+    transform: scale(0.9);
+}
+
+.my-list-item .btn:disabled {
+    border: none;
+}
+
+.my-list-item:hover .btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.my-list-item .btn:focus {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .my-list-item .btn-toolbar > * {
     margin-left: 5px;
+}
+*/
+
+/* button/link which is whole li element */
+li.__liButton {
+    padding: 0;
+}
+li.__liButton:hover {
+    background-color: #cccccc;
+}
+
+a.__liButton__link,
+button.__liButton__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
 }
 
 /* bootstrap's card modifications */
@@ -114,7 +146,6 @@ ul.list-group {
     .__responsive--not-sm {
         display: block;
         padding: 0;
-        border: 1px solid red;
     }
 }
 

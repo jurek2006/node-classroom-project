@@ -12,8 +12,8 @@
         <% if(courses.length > 0) {%>
         <ul class="list-group">
             <% for(let course of courses) { %>
-            <li class="list-group-item">
-                <a href="/course/<%= course.id %>"> <%= course.courseName %></a>
+            <li class="list-group-item __liButton">
+                <a href="/course/<%= course.id %>" class="__liButton__link" data-toggle="tooltip" title="open course's details"> <%= course.courseName %></a>
             </li>
             <% } %>
         </ul>

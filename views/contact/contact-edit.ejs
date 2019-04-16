@@ -53,8 +53,8 @@
                 <h2>Contact enrolled to courses:</h2>
                 <ul  class="list-group">
                     <% for(let course of coursesEnrolled) { %>
-                        <li class="list-group-item my-list-item">
-                            <a href="/course/<%= course.id %>"><%= course.courseName %></a>
+                        <li class="list-group-item my-list-item" >
+                            <%= course.courseName %>
                             
                             <div class="btn-toolbar" role="toolbar">
                                 
