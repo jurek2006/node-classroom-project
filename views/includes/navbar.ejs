@@ -19,14 +19,14 @@
             <li class="nav-item">
                 <a
                     href="/contact/list"
-                    class="nav-link <%= locals.path === '/contact/list' ? 'active' : '' %>"
+                    class="nav-link <%= locals.path.startsWith('/contact/') ? 'active' : '' %>"
                     >Contacts</a
                 >
             </li>
             <li class="nav-item">
                 <a
                     href="/course/list"
-                    class="nav-link <%= locals.path === '/course/list' ? 'active' : '' %>"
+                    class="nav-link <%= locals.path.startsWith('/course/') ? 'active' : '' %>"
                     >Courses</a
                 >
             </li>
