@@ -148,13 +148,22 @@ module.exports = class Course {
         )
             .then(data => {
                 // convert data red from json to array of Course objects
-                return data.map(course => {
-                    return new Course(
-                        course.id,
-                        course.courseName,
-                        course.enrolled || [] //if property is undefined set empty array
-                    );
-                });
+                return (
+                    data
+                        .map(course => {
+                            return new Course(
+                                course.id,
+                                course.courseName,
+                                course.enrolled || [] //if property is undefined set empty array
+                            );
+                        })
+                        // sort by courseName
+                        .sort((courseA, courseB) => {
+                            return courseA.courseName.localeCompare(
+                                courseB.courseName
+                            );
+                        })
+                );
             })
             .catch(err => {
                 console.log(err);
