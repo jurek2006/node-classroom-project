@@ -55,13 +55,19 @@ module.exports = class Contact {
         )
             .then(data => {
                 // convert data red from json to array of Course objects
-                return data.map(contact => {
-                    return new Contact(
-                        contact.id,
-                        contact.firstName,
-                        contact.lastName
-                    );
-                });
+                return data
+                    .map(contact => {
+                        return new Contact(
+                            contact.id,
+                            contact.firstName,
+                            contact.lastName
+                        );
+                    })
+                    .sort((contactA, contactB) => {
+                        return contactA.lastName.localeCompare(
+                            contactB.lastName
+                        );
+                    });
             })
             .catch(err => {
                 console.log(err);

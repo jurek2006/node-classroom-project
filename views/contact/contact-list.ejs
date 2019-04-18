@@ -16,7 +16,7 @@
             <% for(let contact of contacts) { %>
                 <li class="list-group-item __liButton">
                     <a href="/contact/<%= contact.id %>" class="__liButton__link" data-toggle="tooltip" title="open contact's details">
-                        <%= contact.firstName %> <%= contact.lastName %></a
+                        <%= contact.firstName %> <span class="highlighted"><%= contact.lastName %></span></a
                 >
             </li>
             <% } %>
