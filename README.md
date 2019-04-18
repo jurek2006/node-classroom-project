@@ -14,28 +14,28 @@ Now, learning Node.js, I decided to try to use it to create solution for the sam
 
 Technologies/frameworks/libraries used
 
-- Node.js
-- Express.js
-- Mocha
-- EJS
-- Bootstrap 4
-- Eslint
-- Nodemon
+-   Node.js
+-   Express.js
+-   Mocha
+-   EJS
+-   Bootstrap 4
+-   Eslint
+-   Nodemon
 
 ## How to use it
 
-1. Clone the repository and open it in the console
+1. Clone the repository and open it in the terminal
 
 2. Install all dependencies:
 
-   ```
-   npm install
-   ```
+    ```
+    npm install
+    ```
 
 3. Run application on localhost
 
-   ```
-   npm start
-   ```
+    ```
+    npm start
+    ```
 
-4. Open `localhost:3000 ` in your browser
+4. Open `localhost:3000` in your browser

@@ -76,7 +76,6 @@ exports.getCoursetEdit = (req, res, next) => {
             }
         })
         .then(course => {
-            console.log("course", course);
             // here we got course with updated contacts object in course.enrolled property
             res.render("course/course-edit", {
                 title: `${course.courseName} - ${

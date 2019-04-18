@@ -62,7 +62,6 @@ module.exports = class Course {
                 console.log(
                     `Contact already enrolled to the course. Can't do it again`
                 );
-                // NEEDED - add some visual infromation for user
             }
         }
     }
