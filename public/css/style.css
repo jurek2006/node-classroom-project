@@ -4,7 +4,7 @@ body {
 }
 
 a.active {
-    color: red;
+    font-weight: bold;
 }
 
 span.disabled {
@@ -137,6 +137,11 @@ ul.list-group {
     flex-basis: 0;
     flex-grow: 1;
     margin: 0.5em;
+}
+
+/* position of element */
+.__right {
+    text-align: right;
 }
 
 @media only screen and (max-device-width: 480px) {

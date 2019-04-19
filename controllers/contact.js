@@ -2,8 +2,28 @@ const Contact = require("../models/contact");
 const Course = require("../models/course");
 
 exports.getContacts = (req, res, next) => {
+    const sortByField = req.query.sort || "lastName";
     Contact.getContacts().then(contacts => {
-        res.render("contact/contact-list", { title: "Contacts", contacts });
+        try {
+            // try to sort contacts by given in query param field
+            contacts.sort((contactA, contactB) => {
+                return contactA[sortByField].localeCompare(
+                    contactB[sortByField]
+                );
+            });
+        } catch (error) {
+            console.error(`Can't sort by field ${sortByField}`, error);
+            return res.render("error", {
+                title: "Contacts",
+                message: `Can't sort contacts by field ${sortByField}`,
+                error
+            });
+        }
+        res.render("contact/contact-list", {
+            title: "Contacts",
+            contacts,
+            sortByField
+        });
     });
 };
 

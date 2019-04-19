@@ -11,6 +11,12 @@
 
        
         <% if(contacts.length > 0) {%>
+            <p class="__right">
+                Sort by:  
+                <a href="/contact/list" class="btn btn-outline-secondary btn-sm <%= sortByField === 'lastName' ? 'active' : '' %>">last name</a>
+                <a href="/contact/list?sort=firstName" class="btn btn-outline-secondary btn-sm <%= sortByField === 'firstName' ? 'active' : '' %>">first name</a>
+            </p>
+            
             
             <ul class="list-group">
             <% for(let contact of contacts) { %>
